@@ -1,22 +1,27 @@
-$(document).ready(function(){
-    moveDiv();
-});
-
-function makeNewPosition(){
-
-    var h = $(window).height() - 300;
-    var w = $(window).width() - 400;
-
-    var nh = Math.floor(Math.random() * h * 0.6);
-    var nw = Math.floor(Math.random() * w * 0.7);
-
-    return [nh,nw];
-}
-
-function moveDiv(){
-    var newq = makeNewPosition();
-    $('.basicRectangle').animate({ top: newq[0], left: newq[1]},1000, function(){
-      moveDiv();
+$(document).ready(function () {
+    $("#test").click(function () {
+        moveBoard(30,263)
     });
 
-};
+
+    function moveBoard(top,left){
+        //setinterval
+        //jquery css()方法更改top和left
+        //如果更改完后等于了传进来的参数，shut interval
+
+
+
+
+    }
+
+
+
+
+
+
+});
+
+
+
+
+
