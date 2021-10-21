@@ -1,15 +1,8 @@
 $(document).ready(function () {
     $("#test").click(function () {
-        // $.post("/test", {}, function (data) {
-        //     moveBoard(data[0], data[1])
-        // });
-
-        setInterval(function () {
-            $.post("/test",{},function (data) {
-                console.log(data);
-            })
-        },1);
-
+        $.post("/test", {}, function (data) {
+            moveBoard(data[0], data[1])
+        });
     });
 
     var topNow;

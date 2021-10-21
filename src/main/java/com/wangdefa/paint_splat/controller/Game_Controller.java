@@ -15,7 +15,7 @@ import java.util.Random;
 public class Game_Controller {
 
     @RequestMapping("/test")
-    public Game test() {
+    public int[] test() {
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
 
         System.out.println(session.getId());
@@ -23,7 +23,7 @@ public class Game_Controller {
         Random random = new Random();
         random.nextInt(300);
 
-        return new Game(new String[]{"123", "3213213"}, "sadasd");
+        return new int[]{random.nextInt(300), random.nextInt(300)};
     }
 
 
