@@ -8,6 +8,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 
 @RestController
@@ -19,6 +20,22 @@ public class Game_Controller {
 
         System.out.println(session.getId());
 
-        return new Game(new String[]{"123", "1230321300"}, "test");
+        Random random = new Random();
+        random.nextInt(300);
+
+        return new Game(new String[]{"123", "3213213"}, "sadasd");
+    }
+
+
+    @RequestMapping("/test2")
+    public String test2() {
+        HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+
+        System.out.println(session.getId());
+
+        Random random = new Random();
+        random.nextInt(300);
+
+        return "123";
     }
 }
