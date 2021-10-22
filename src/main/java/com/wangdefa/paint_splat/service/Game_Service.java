@@ -5,17 +5,19 @@ import com.wangdefa.paint_splat.Other.GameTimer;
 import com.wangdefa.paint_splat.entity.Game;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
-import java.text.DateFormat;
-
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
 
 @Service
 public class Game_Service implements Game_Service_Interface {
+    private static HashMap<String, Integer> players = new HashMap<>();
+    private static ArrayList<Game> rooms = new ArrayList<>();
+
+    private static Game testGame = new Game();
+
     @Override
-    public Game test() {
+    public Game service() {
 
         System.out.println("service");
 

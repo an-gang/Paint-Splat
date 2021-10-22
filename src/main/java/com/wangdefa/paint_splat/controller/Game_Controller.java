@@ -1,6 +1,6 @@
 package com.wangdefa.paint_splat.controller;
 
-import com.wangdefa.paint_splat.entity.Game;
+
 import com.wangdefa.paint_splat.service.Game_Service_Interface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,7 +37,7 @@ public class Game_Controller {
     @RequestMapping("/test2")
     public String test2() {
 
-        service.test();
+//        service.test();
 
         return "123";
     }
