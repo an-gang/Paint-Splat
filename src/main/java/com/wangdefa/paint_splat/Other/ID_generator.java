@@ -9,11 +9,9 @@ import java.util.ArrayList;
 public class ID_generator {
     // 生成六位数id转string
     public static String generateID(){
-        //直接截取时间戳毫秒后六位
-        int id = System.currentTimeMillis();
-        String result = Integer.toString(id).substring(s.length()-6,s.length());//或者事
-
-        return result;
+        int id = (int)((Math.random()*9+1)*100000);
+        String str = Integer.toString(id);
+        return str;
     }
 
 }
