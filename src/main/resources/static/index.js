@@ -1,3 +1,11 @@
+Game = {
+    positions: [[234, 364], [213, 576], [234, 364], [213, 576], [234, 364], [213, 576]],
+    currentPosition: 4
+
+
+};
+
+
 $(document).ready(function () {
     $("#test").click(function () {
         $.post("/test", {}, function (data) {
@@ -61,9 +69,6 @@ $(document).ready(function () {
         }
 
     }
-
-
-
 
 
 });
