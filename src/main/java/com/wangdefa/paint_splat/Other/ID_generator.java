@@ -1,8 +1,6 @@
 package com.wangdefa.paint_splat.Other;
 
 
-
-
 public class ID_generator {
     // 生成六位数id转string
     public static String generateID(){
