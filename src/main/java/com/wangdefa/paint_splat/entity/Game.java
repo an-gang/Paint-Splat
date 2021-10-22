@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Game {
     private String id;
     private Date startTime;
-    private int timeSpan;
+    private long timeSpan;
     private int step;
     private String[] players;
     private HashMap<Integer, double[]> boardPositions;
@@ -22,6 +22,14 @@ public class Game {
         timeSpan = 0;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Date getStartTime() {
         return startTime;
     }
@@ -30,11 +38,11 @@ public class Game {
         this.startTime = startTime;
     }
 
-    public int getTimeSpan() {
+    public long getTimeSpan() {
         return timeSpan;
     }
 
-    public void setTimeSpan(int timeSpan) {
+    public void setTimeSpan(long timeSpan) {
         this.timeSpan = timeSpan;
     }
 

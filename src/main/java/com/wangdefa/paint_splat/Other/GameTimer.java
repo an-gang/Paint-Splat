@@ -14,14 +14,7 @@ public class GameTimer extends TimerTask {
 
     @Override
     public void run() {
-        game.getStartTime();
-
-        Date cur = new Date();
-
-
-
-
-        game.setTimeSpan(4500);
-
+        Date currentTime = new Date();
+        game.setTimeSpan(currentTime.getTime() - game.getStartTime().getTime());
     }
 }

@@ -34,27 +34,6 @@ public class Game_Service implements Game_Service_Interface {
         gameTimer.setGame(game);
         timer.schedule(gameTimer, 0, 1000);
     }
-    public void run(Game game){
-        DateFormat dateFormat = new SimpleDateFormat();
-
-        String paramTime = new SimpleDataFormat().format(game.getStartTime().getTime()); // 游戏开始时间
-
-        String systemTime = new SimpleDateFormat().format(new Date().getTime());// 获取系统时间
-
-        long difference = 0; // 差值
-
-        try {
-            Date systemDate = dateFormat.parse(systemTime);
-
-            Date paramDate = dateFormat.parse(paramTime);
-
-            difference = systemDate.getTime() - paramDate.getTime();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        game.setTimeSpan(difference); // 返回差值时间
-    }
 
 
 }
