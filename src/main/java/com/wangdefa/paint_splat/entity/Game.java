@@ -1,27 +1,72 @@
 package com.wangdefa.paint_splat.entity;
 
+import java.util.Date;
+import java.util.HashMap;
+
 public class Game {
-    private String[] arrTest;
-    private String test;
+    private String id;
+    private Date startTime;
+    private int timeSpan;
+    private int step;
+    private String[] players;
+    private HashMap<Integer, double[]> boardPositions;
+    private HashMap<String, Paint> paints;
 
-    public Game(String[] arrTest, String test) {
-        this.arrTest = arrTest;
-        this.test = test;
+    Game() {
+        init();
     }
 
-    public String[] getArrTest() {
-        return arrTest;
+    private void init() {
+        players = new String[4];
+        boardPositions = new HashMap<>();
+        timeSpan = 0;
     }
 
-    public void setArrTest(String[] arrTest) {
-        this.arrTest = arrTest;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public String getTest() {
-        return test;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public void setTest(String test) {
-        this.test = test;
+    public int getTimeSpan() {
+        return timeSpan;
+    }
+
+    public void setTimeSpan(int timeSpan) {
+        this.timeSpan = timeSpan;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
+
+    public String[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(String[] players) {
+        this.players = players;
+    }
+
+    public HashMap<Integer, double[]> getBoardPositions() {
+        return boardPositions;
+    }
+
+    public void setBoardPositions(HashMap<Integer, double[]> boardPositions) {
+        this.boardPositions = boardPositions;
+    }
+
+    public HashMap<String, Paint> getPaints() {
+        return paints;
+    }
+
+    public void setPaints(HashMap<String, Paint> paints) {
+        this.paints = paints;
     }
 }
