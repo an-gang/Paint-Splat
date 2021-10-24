@@ -6,18 +6,17 @@ import java.util.Random;
 
 public class Game {
     private Date startTime;
-    private int step;
+    private double step;
     private ArrayList<String> players;
     private ArrayList<Integer> scores;
     private ArrayList<Paint> paints;
     private ArrayList<double[]> boardPositions;
     private long time = 0;
     private final static long timeSpan = 600000;
-    private final static int animationSpeed = 50;
 
 
     public Game() {
-        step = 1;
+        step = 0.01;
         players = new ArrayList<>();
         scores = new ArrayList<>();
         paints = new ArrayList<>();
@@ -25,13 +24,14 @@ public class Game {
         init();
 
     }
-    private void init(){
+
+    private void init() {
         boardPositions.add(new double[]{0, 0});
         Random random = new Random();
         long timeUse = 0;
-        while (timeUse < timeSpan * 1.5) {
+        while (timeUse < timeSpan) {
             boardPositions.add(new double[]{random.nextInt(51), random.nextInt(51)});
-            timeUse += calculateDistance(boardPositions.get(boardPositions.size() - 1), boardPositions.get(boardPositions.size() - 2)) / step * animationSpeed;
+            timeUse += calculateDistance(boardPositions.get(boardPositions.size() - 1), boardPositions.get(boardPositions.size() - 2)) / step;
         }
     }
 
@@ -48,11 +48,11 @@ public class Game {
         this.startTime = startTime;
     }
 
-    public int getStep() {
+    public double getStep() {
         return step;
     }
 
-    public void setStep(int step) {
+    public void setStep(double step) {
         this.step = step;
     }
 
@@ -98,9 +98,5 @@ public class Game {
 
     public static long getTimeSpan() {
         return timeSpan;
-    }
-
-    public static int getAnimationSpeed() {
-        return animationSpeed;
     }
 }

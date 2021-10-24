@@ -37,6 +37,7 @@ public class Game_Service implements Game_Service_Interface {
             Game game = new Game();
             rooms.put(newId, game);
             game.getPlayers().add(playerId);
+            game.getScores().add(0);
             return newId;
         } else {
             return existedRoomId;
@@ -47,8 +48,11 @@ public class Game_Service implements Game_Service_Interface {
     public String joinRoom(String playerId, String roomId) {
         String existedRoomId = checkRoomId(playerId);
         if (existedRoomId == null) {
-            if (rooms.get(roomId).getPlayers().size() < 4) {
-                rooms.get(roomId).getPlayers().add(playerId);
+            Game game = rooms.get(roomId);
+            if (game.getPlayers().size() < 4) {
+                game.getPlayers().add(playerId);
+                game.getScores().add(0);
+                startTiming(game);
                 return "success";
             } else {
                 return "full";
@@ -84,6 +88,21 @@ public class Game_Service implements Game_Service_Interface {
         return rooms.get(roomId).getTime();
     }
 
+    @Override
+    public void quitRoom(String playerId, String roomId) {
+        Iterator<String> iterator = rooms.get(roomId).getPlayers().iterator();
+        while (iterator.hasNext()){
+            if(iterator.next().equals(playerId)){
+                iterator.remove();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int countPlayer(String roomId) {
+        return rooms.get(roomId).getPlayers().size();
+    }
 
     @Override
     public void printConnections() {
@@ -96,11 +115,11 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    private void startTime(Game game) {
+    private void startTiming(Game game) {
         game.setStartTime(new Date());
         Timer timer = new Timer();
         GameTimer gameTimer = new GameTimer();
         gameTimer.setGame(game);
-        timer.schedule(gameTimer, 0, 1000);
+        timer.schedule(gameTimer, 3, 1000);
     }
 }
