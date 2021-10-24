@@ -72,6 +72,18 @@ public class Game_Controller {
         return service.getTime(roomId);
     }
 
+    @RequestMapping("/quitRoom")
+    @CrossOrigin("*")
+    public void quitRoom(String roomId){
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        service.quitRoom(session.getId(),roomId);
+    }
+
+    @RequestMapping("/countPlayer")
+    @CrossOrigin("*")
+    public int countPlayer(String roomId){
+        return service.countPlayer(roomId);
+    }
 
     @RequestMapping("/printConnections")
     @CrossOrigin("*")
