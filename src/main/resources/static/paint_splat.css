@@ -33,32 +33,19 @@ body {
 }
 
 #roomNumber {
-    position: absolute;
     background-color: antiquewhite;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+    display: inline-block;
 }
+
 #timer {
-    position: absolute;
-    background-color: blue;
-    top: 3%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    background-color: yellowgreen;
+    display: inline-block;
 }
 
 #scoreBoard {
-    position: absolute;
-    background-color: red;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -100%);
+    background-color: orangered;
 }
 
 #start{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: none;
 }

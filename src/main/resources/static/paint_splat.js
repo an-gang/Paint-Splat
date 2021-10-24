@@ -10,7 +10,7 @@ $(document).ready(function () {
     var isStart;
 
     $.post("/checkRoomId", {}, function (RoomId) {
-        $("#roomNumber").text(RoomId);
+        $("#roomNumber").text("Room Number: "RoomId);
     });
     $.post("/getPlayerId", {}, function (playerId) {
         sessionId = playerId
@@ -34,11 +34,11 @@ $(document).ready(function () {
             if (players[i] === sessionId) {
                 scoreBoard.append("<div class='mine'>Player " + (i + 1) + " : " + scores[0] + "</div>")
             } else {
-                scoreBoard.append("<div>Player " + (i + 1) + " : " + scores[0] + "</div>")
+                scoreBoard.append("<div>Player " + (i + 1) + ": " + scores[0] + "</div>")
             }
         }
 
-        $("#timer").text("Time : " + (60 - Math.round(time / 1000)));
+        $("#timer").text("Time: " + (60 - Math.round(time / 1000)));
     }
 
     var gameUpdater = setInterval(updateGame, 50);
@@ -61,12 +61,16 @@ $(document).ready(function () {
 
     var gameStarter = setInterval(function () {
         if (isStart) {
-            moveBoard();
+            playStartAnimation();
+            setTimeout(moveBoard,3000);
             window.clearInterval(gameStarter)
         }
     }, 50);
+    function playStartAnimation() {
+        //屏幕中央显示图片倒计时3,2,1图片在img文件夹
 
-    var timeused = 0;
+
+    }
 
     function moveBoard() {
         var current = boardPositions[currentPosition];
@@ -76,8 +80,6 @@ $(document).ready(function () {
             console.log(time);
             $("#board").animate({top: target[0] + "%", left: target[1] + "%"}, time, function () {
                 currentPosition++;
-                timeused += time;
-                console.log(boardPositions.length + "----" + currentPosition + "----" + timeused);
                 moveBoard();
             });
         }
