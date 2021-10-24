@@ -1,9 +1,9 @@
-package com.wangdefa.paint_splat.service;
+package com.group3.paint_splat.service;
 
 
-import com.wangdefa.paint_splat.Other.GameTimer;
-import com.wangdefa.paint_splat.Other.ID_generator;
-import com.wangdefa.paint_splat.entity.Game;
+import com.group3.paint_splat.Other.GameTimer;
+import com.group3.paint_splat.Other.ID_generator;
+import com.group3.paint_splat.entity.Game;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

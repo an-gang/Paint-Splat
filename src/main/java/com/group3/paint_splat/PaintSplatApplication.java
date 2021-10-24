@@ -1,4 +1,4 @@
-package com.wangdefa.paint_splat;
+package com.group3.paint_splat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

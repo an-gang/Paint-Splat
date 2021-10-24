@@ -1,4 +1,4 @@
-package com.wangdefa.paint_splat.entity;
+package com.group3.paint_splat.entity;
 
 public class Paint {
     private String player;

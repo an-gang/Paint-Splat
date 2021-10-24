@@ -1,8 +1,8 @@
-package com.wangdefa.paint_splat.controller;
+package com.group3.paint_splat.controller;
 
 
-import com.wangdefa.paint_splat.entity.Game;
-import com.wangdefa.paint_splat.service.Game_Service_Interface;
+import com.group3.paint_splat.entity.Game;
+import com.group3.paint_splat.service.Game_Service_Interface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
