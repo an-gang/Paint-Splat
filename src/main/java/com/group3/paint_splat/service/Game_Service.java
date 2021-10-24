@@ -52,7 +52,6 @@ public class Game_Service implements Game_Service_Interface {
             if (game.getPlayers().size() < 4) {
                 game.getPlayers().add(playerId);
                 game.getScores().add(0);
-                startTiming(game);
                 return "success";
             } else {
                 return "full";
@@ -115,11 +114,16 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    private void startTiming(Game game) {
-        game.setStartTime(new Date());
-        Timer timer = new Timer();
-        GameTimer gameTimer = new GameTimer();
-        gameTimer.setGame(game);
-        timer.schedule(gameTimer, 3, 1000);
+    public void startGame(String playerId) {
+        Game game = rooms.get(checkRoomId(playerId));
+        if (!game.isStart()) {
+            game.setStart(true);
+            game.setStartTime(new Date());
+            Timer timer = new Timer();
+            GameTimer gameTimer = new GameTimer();
+            gameTimer.setGame(game);
+            timer.schedule(gameTimer, 3, 1000);
+        }
+
     }
 }

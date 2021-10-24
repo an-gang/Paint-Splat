@@ -21,5 +21,7 @@ public interface Game_Service_Interface {
 
     int countPlayer(String playerId);
 
+    void startGame(String playerId);
+
     void printConnections();
 }

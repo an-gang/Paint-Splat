@@ -62,37 +62,44 @@ public class Game_Controller {
 
     @RequestMapping("/getGame")
     @CrossOrigin("*")
-    public Game getGame(){
+    public Game getGame() {
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
         return service.getGame(session.getId());
     }
 
     @RequestMapping("/getTime")
     @CrossOrigin("*")
-    public long getTime(){
+    public long getTime() {
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
         return service.getTime(session.getId());
     }
 
     @RequestMapping("/quitRoom")
     @CrossOrigin("*")
-    public void quitRoom(){
+    public void quitRoom() {
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
         service.quitRoom(session.getId());
     }
 
     @RequestMapping("/countPlayer")
     @CrossOrigin("*")
-    public int countPlayer(){
+    public int countPlayer() {
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
         return service.countPlayer(session.getId());
     }
 
     @RequestMapping("/getPlayerId")
     @CrossOrigin("*")
-    public String getPlayerId(){
+    public String getPlayerId() {
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
         return session.getId();
+    }
+
+    @RequestMapping("/startGame")
+    @CrossOrigin("*")
+    public void startGame() {
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        service.startGame(session.getId());
     }
 
     @RequestMapping("/printConnections")

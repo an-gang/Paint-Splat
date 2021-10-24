@@ -11,9 +11,9 @@ public class Game {
     private ArrayList<Integer> scores;
     private ArrayList<Paint> paints;
     private ArrayList<double[]> boardPositions;
-    private long time = 0;
-    private final static long timeSpan = 600000;
-
+    private long time;
+    private boolean isStart;
+    private final static long timeSpan = 60000;
 
     public Game() {
         step = 0.01;
@@ -21,6 +21,8 @@ public class Game {
         scores = new ArrayList<>();
         paints = new ArrayList<>();
         boardPositions = new ArrayList<>();
+        time = 0;
+        isStart = false;
         init();
 
     }
@@ -98,5 +100,13 @@ public class Game {
 
     public static long getTimeSpan() {
         return timeSpan;
+    }
+
+    public boolean isStart() {
+        return isStart;
+    }
+
+    public void setStart(boolean start) {
+        isStart = start;
     }
 }

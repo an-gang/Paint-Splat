@@ -24,12 +24,15 @@ function refresh() {
     $.post("/getRooms", {}, function (data) {
         $("#roomList").html("");
         for (var i = 0; i < data.length; i++) {
-            $("#roomList").append("<div id='" + data[i] + "' onclick='joinRoom(" + data[i] + ")'>" + data[i] + "</div>")
+            $("#roomList").append("<div id='" + data[i] + "' onclick='joinRoom(\"" + data[i] + "\")'>" + data[i] + "</div>")
+
         }
     })
 }
 
 function joinRoom(roomId) {
+    console.log(typeof roomId);
+
     $.post("/joinRoom", {roomId: roomId}, function (data) {
         if (data === "success") {
             window.location.href = "paint_splat.html";
