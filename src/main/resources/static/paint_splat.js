@@ -1,19 +1,21 @@
 $(document).ready(function () {
     var room = $("#roomNumber");
     var player = $("#scoreBoard");
-    var scores = $("#playerScore");
+    var scores = $("#playergitScore");
+    var playerNum=0;
+    var roomid="";
+    var playerscore;
     $.post("/checkRoomId",{},function (roomId) {
-        var roomid = roomId;
+        roomid = roomId;
         room.text(roomid);
-        var playerid = 0;
-        var playerscore;
-        $.post("/getGame",{roomId: roomId},function (data) {
-            console.log(data);
-            console.log(data["scores"]);
-            playerid = data["players"][0];
-            playerscore = data["scores"];
-            player.text(playerid);
-            scores.text(playerscore);
-        });
     })
+    $.post("/getGame",{},function (data) {
+        console.log(data);
+        console.log(data["scores"]);
+        playerscore = data["scores"];
+    });
+    setInterval(function (){$.post("/countPlayer",{},function (playerNum) {
+            playerNum = playerNum;
+        });}
+        ,5000);
 });
