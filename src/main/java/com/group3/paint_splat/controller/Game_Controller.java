@@ -88,9 +88,18 @@ public class Game_Controller {
         return service.countPlayer(session.getId());
     }
 
+    @RequestMapping("/getPlayerId")
+    @CrossOrigin("*")
+    public String getPlayerId(){
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return session.getId();
+    }
+
     @RequestMapping("/printConnections")
     @CrossOrigin("*")
     public void printConnections(String roomId) {
         service.printConnections();
     }
+
+
 }
