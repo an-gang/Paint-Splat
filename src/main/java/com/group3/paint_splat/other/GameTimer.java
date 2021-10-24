@@ -1,4 +1,4 @@
-package com.group3.paint_splat.Other;
+package com.group3.paint_splat.other;
 
 import com.group3.paint_splat.entity.Game;
 import java.util.Date;
