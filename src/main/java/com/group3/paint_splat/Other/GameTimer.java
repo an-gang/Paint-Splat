@@ -1,7 +1,6 @@
-package com.wangdefa.paint_splat.Other;
+package com.group3.paint_splat.Other;
 
-import com.wangdefa.paint_splat.entity.Game;
-
+import com.group3.paint_splat.entity.Game;
 import java.util.Date;
 import java.util.TimerTask;
 

@@ -1,4 +1,4 @@
-package com.wangdefa.paint_splat.Other;
+package com.group3.paint_splat.Other;
 
 import java.util.Random;
 

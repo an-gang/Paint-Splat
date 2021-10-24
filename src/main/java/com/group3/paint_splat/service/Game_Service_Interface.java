@@ -1,8 +1,7 @@
-package com.wangdefa.paint_splat.service;
+package com.group3.paint_splat.service;
 
-import com.wangdefa.paint_splat.entity.Game;
+import com.group3.paint_splat.entity.Game;
 
-import java.util.HashMap;
 import java.util.Set;
 
 public interface Game_Service_Interface {
