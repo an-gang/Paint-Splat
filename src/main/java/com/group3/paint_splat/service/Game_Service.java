@@ -1,8 +1,8 @@
 package com.group3.paint_splat.service;
 
 
-import com.group3.paint_splat.Other.GameTimer;
-import com.group3.paint_splat.Other.ID_generator;
+import com.group3.paint_splat.other.GameTimer;
+import com.group3.paint_splat.other.ID_generator;
 import com.group3.paint_splat.entity.Game;
 import org.springframework.stereotype.Service;
 
@@ -84,13 +84,13 @@ public class Game_Service implements Game_Service_Interface {
     }
 
     @Override
-    public long getTime(String roomId) {
-        return rooms.get(roomId).getTime();
+    public long getTime(String playerId) {
+        return rooms.get(checkRoomId(playerId)).getTime();
     }
 
     @Override
-    public void quitRoom(String playerId, String roomId) {
-        Iterator<String> iterator = rooms.get(roomId).getPlayers().iterator();
+    public void quitRoom(String playerId) {
+        Iterator<String> iterator = rooms.get(checkRoomId(playerId)).getPlayers().iterator();
         while (iterator.hasNext()) {
             if (iterator.next().equals(playerId)) {
                 iterator.remove();
@@ -100,8 +100,8 @@ public class Game_Service implements Game_Service_Interface {
     }
 
     @Override
-    public int countPlayer(String roomId) {
-        return rooms.get(roomId).getPlayers().size();
+    public int countPlayer(String playerId) {
+        return rooms.get(checkRoomId(playerId)).getPlayers().size();
     }
 
     @Override

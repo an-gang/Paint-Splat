@@ -69,21 +69,23 @@ public class Game_Controller {
 
     @RequestMapping("/getTime")
     @CrossOrigin("*")
-    public long getTime(String roomId){
-        return service.getTime(roomId);
+    public long getTime(){
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.getTime(session.getId());
     }
 
     @RequestMapping("/quitRoom")
     @CrossOrigin("*")
-    public void quitRoom(String roomId){
+    public void quitRoom(){
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
-        service.quitRoom(session.getId(),roomId);
+        service.quitRoom(session.getId());
     }
 
     @RequestMapping("/countPlayer")
     @CrossOrigin("*")
-    public int countPlayer(String roomId){
-        return service.countPlayer(roomId);
+    public int countPlayer(){
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.countPlayer(session.getId());
     }
 
     @RequestMapping("/printConnections")

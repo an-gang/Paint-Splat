@@ -15,12 +15,11 @@ public interface Game_Service_Interface {
 
     Game getGame(String playerId);
 
-    long getTime(String roomId);
+    long getTime(String playerId);
 
-    void quitRoom(String playerId, String roomId);
+    void quitRoom(String playerId);
 
-    int countPlayer(String roomId);
-
+    int countPlayer(String playerId);
 
     void printConnections();
 }
