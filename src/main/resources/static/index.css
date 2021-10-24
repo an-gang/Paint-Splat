@@ -9,32 +9,10 @@ body {
 }
 
 #panel {
-    width: 160vh;
-    height: 100vh;
-    background-color: aqua;
-    margin: auto;
-}
-
-#board{
-    width: 400px;
-    height: 300px;
-    background-color: azure;
-    position: relative;
-    left: 0;
-    top: 0;
-}
-
-.paint{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    left: 35px;
-    top: 67px;
+    width: 60%;
     background-color: beige;
 }
-
-#test{
-    position: absolute;
-    top: 0;
-    left: 0;
+#roomList{
+    width: 60%;
+    background-color: aquamarine;
 }

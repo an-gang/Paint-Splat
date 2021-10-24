@@ -11,6 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -23,7 +24,7 @@ public class Game_Controller {
     @RequestMapping("/test")
     @CrossOrigin("*")
     public int[] test() {
-        HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
 
         System.out.println(session.getId());
 
