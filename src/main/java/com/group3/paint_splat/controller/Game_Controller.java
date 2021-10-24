@@ -95,6 +95,21 @@ public class Game_Controller {
         return session.getId();
     }
 
+    @RequestMapping("/getPlayerId2")
+    @CrossOrigin("*")
+    public String[] getPlayerId2() {
+        String[] letters = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+        Random random = new Random();
+        StringBuilder color = new StringBuilder("#");
+        for (int i = 0; i < 6; i++) {
+            color.append(letters[random.nextInt(16)]);
+        }
+        color.append("FF");
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return new String[]{session.getId(), color.toString()};
+    }
+
+
     @RequestMapping("/startGame")
     @CrossOrigin("*")
     public void startGame() {
