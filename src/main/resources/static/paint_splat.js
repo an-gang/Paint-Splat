@@ -10,7 +10,7 @@ $(document).ready(function () {
     var isStart;
 
     $.post("/checkRoomId", {}, function (RoomId) {
-        $("#roomNumber").text("Room Number: "RoomId);
+        $("#roomNumber").text("Room Number: " + RoomId);
     });
     $.post("/getPlayerId", {}, function (playerId) {
         sessionId = playerId
@@ -62,10 +62,11 @@ $(document).ready(function () {
     var gameStarter = setInterval(function () {
         if (isStart) {
             playStartAnimation();
-            setTimeout(moveBoard,3000);
+            setTimeout(moveBoard, 3000);
             window.clearInterval(gameStarter)
         }
     }, 50);
+
     function playStartAnimation() {
         //屏幕中央显示图片倒计时3,2,1图片在img文件夹
 
