@@ -127,7 +127,7 @@ public class Game_Service implements Game_Service_Interface {
             Timer timer = new Timer();
             GameTimer gameTimer = new GameTimer();
             gameTimer.setGame(game);
-            timer.schedule(gameTimer, 3, 1000);
+            timer.schedule(gameTimer, 3000, 1000);
         }
 
     }

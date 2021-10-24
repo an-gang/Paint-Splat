@@ -14,6 +14,6 @@ public class GameTimer extends TimerTask {
     @Override
     public void run() {
         Date currentTime = new Date();
-        game.setTime(currentTime.getTime() - game.getStartTime().getTime());
+        game.setTime(currentTime.getTime() - game.getStartTime().getTime()-3000);
     }
 }

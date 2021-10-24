@@ -37,7 +37,6 @@ $(document).ready(function () {
                 scoreBoard.append("<div>Player " + (i + 1) + ": " + scores[0] + "</div>")
             }
         }
-
         $("#timer").text("Time: " + (60 - Math.round(time / 1000)));
     }
 
@@ -61,15 +60,27 @@ $(document).ready(function () {
 
     var gameStarter = setInterval(function () {
         if (isStart) {
-            playStartAnimation();
+            if(!time||time===0){
+                playStartAnimation();
+            }
+            $("#aim").show();
             setTimeout(moveBoard, 3000);
             window.clearInterval(gameStarter)
         }
     }, 50);
 
     function playStartAnimation() {
-        //屏幕中央显示图片倒计时3,2,1图片在img文件夹
-
+        $("#num3").animate({opacity: 1}, 500, function () {
+            $("#num3").animate({opacity: 0}, 500, function () {
+                $("#num2").animate({opacity: 1}, 500, function () {
+                    $("#num2").animate({opacity: 0}, 500, function () {
+                        $("#num1").animate({opacity: 1}, 500, function () {
+                            $("#num1").animate({opacity: 0}, 500);
+                        });
+                    });
+                });
+            });
+        });
 
     }
 
@@ -90,9 +101,8 @@ $(document).ready(function () {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
-    $("#test").click(function () {
-        $("#num1").animate({opacity: 1}, 500);
-    });
+
+
 
 });
 
