@@ -11,7 +11,9 @@ public interface Game_Service_Interface {
     String joinRoom(String playerId, String roomId);
     String checkRoomId(String playerId);
     Game getGame(String roomId);
-
+    long getTime(String roomId);
 
     void printConnections();
+
+
 }

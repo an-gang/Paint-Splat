@@ -79,6 +79,11 @@ public class Game_Service implements Game_Service_Interface {
         return rooms.get(roomId);
     }
 
+    @Override
+    public long getTime(String roomId) {
+        return rooms.get(roomId).getTime();
+    }
+
 
     @Override
     public void printConnections() {

@@ -19,9 +19,13 @@ public class Game {
     public Game() {
         step = 1;
         players = new ArrayList<>();
+        scores = new ArrayList<>();
         paints = new ArrayList<>();
         boardPositions = new ArrayList<>();
+        init();
 
+    }
+    private void init(){
         boardPositions.add(new double[]{0, 0});
         Random random = new Random();
         long timeUse = 0;
@@ -52,6 +56,22 @@ public class Game {
         this.step = step;
     }
 
+    public ArrayList<String> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<String> players) {
+        this.players = players;
+    }
+
+    public ArrayList<Integer> getScores() {
+        return scores;
+    }
+
+    public void setScores(ArrayList<Integer> scores) {
+        this.scores = scores;
+    }
+
     public ArrayList<Paint> getPaints() {
         return paints;
     }
@@ -76,11 +96,11 @@ public class Game {
         this.time = time;
     }
 
-    public ArrayList<String> getPlayers() {
-        return players;
+    public static long getTimeSpan() {
+        return timeSpan;
     }
 
-    public void setPlayers(ArrayList<String> players) {
-        this.players = players;
+    public static int getAnimationSpeed() {
+        return animationSpeed;
     }
 }

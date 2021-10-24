@@ -66,6 +66,12 @@ public class Game_Controller {
         return service.getGame(roomId);
     }
 
+    @RequestMapping("/getTime")
+    @CrossOrigin("*")
+    public long getTime(String roomId){
+        return service.getTime(roomId);
+    }
+
 
     @RequestMapping("/printConnections")
     @CrossOrigin("*")
