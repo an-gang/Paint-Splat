@@ -89,12 +89,17 @@ public class Game_Service implements Game_Service_Interface {
 
     @Override
     public void quitRoom(String playerId) {
-        Iterator<String> iterator = rooms.get(checkRoomId(playerId)).getPlayers().iterator();
+        String roomId = checkRoomId(playerId);
+        Game game = rooms.get(roomId);
+        Iterator<String> iterator = game.getPlayers().iterator();
         while (iterator.hasNext()) {
             if (iterator.next().equals(playerId)) {
                 iterator.remove();
                 break;
             }
+        }
+        if (game.getPlayers().size() == 0) {
+            rooms.remove(roomId);
         }
     }
 

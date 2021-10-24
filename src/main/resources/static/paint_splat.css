@@ -9,8 +9,10 @@ body {
 }
 
 #panel {
-    width: 80vh;
-    height: 50vh;
+    /*width: 80vh;*/
+    /*height: 50vh;*/
+    width: 130vh;
+    height: 80vh;
     background-color: aqua;
     margin: auto;
 }
@@ -25,11 +27,11 @@ body {
 }
 
 .paint {
-    width: 5%;
+    width: 12%;
     position: absolute;
     left: 34%;
     top: 34%;
-    background-color: beige;
+    transform: translate(-50%, -50%);
 }
 
 #roomNumber {
@@ -46,6 +48,14 @@ body {
     background-color: orangered;
 }
 
-#start{
+#start {
     display: none;
+}
+
+#num1{
+    position: absolute;
+    opacity: 0;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

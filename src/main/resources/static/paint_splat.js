@@ -89,6 +89,11 @@ $(document).ready(function () {
     function calculateDistance(point1, point2) {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
+
+    $("#test").click(function () {
+        $("#num1").animate({opacity: 1}, 500);
+    });
+
 });
 
 
