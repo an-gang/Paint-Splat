@@ -79,8 +79,8 @@ public class Game_Service implements Game_Service_Interface {
     }
 
     @Override
-    public Game getGame(String roomId) {
-        return rooms.get(roomId);
+    public Game getGame(String playerId) {
+        return rooms.get(checkRoomId(playerId));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class Game_Service implements Game_Service_Interface {
     @Override
     public void quitRoom(String playerId, String roomId) {
         Iterator<String> iterator = rooms.get(roomId).getPlayers().iterator();
-        while (iterator.hasNext()){
-            if(iterator.next().equals(playerId)){
+        while (iterator.hasNext()) {
+            if (iterator.next().equals(playerId)) {
                 iterator.remove();
                 break;
             }
