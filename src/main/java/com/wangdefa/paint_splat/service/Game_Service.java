@@ -11,8 +11,8 @@ import java.util.Timer;
 
 @Service
 public class Game_Service implements Game_Service_Interface {
-    private static HashMap<String, Integer> players = new HashMap<>();
-    private static ArrayList<Game> rooms = new ArrayList<>();
+//    private static HashMap<String, Integer> players = new HashMap<>();
+//    private static ArrayList<Game> rooms = new ArrayList<>();
 
     private static Game testGame = new Game();
 

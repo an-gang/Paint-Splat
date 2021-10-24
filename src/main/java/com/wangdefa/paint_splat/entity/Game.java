@@ -7,11 +7,11 @@ import java.util.HashMap;
 public class Game {
     private String id;
     private Date startTime;
-    private int step;
     private long timeSpan = 0;
+    private int step;
     private String[] players = new String[4];
     private ArrayList<double[]> boardPositions = new ArrayList<>();
-    private HashMap<String, Paint> paints;
+    private ArrayList<Paint> paints;
 
     public Game() {
         init();
