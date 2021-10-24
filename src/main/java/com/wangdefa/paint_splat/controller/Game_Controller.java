@@ -62,8 +62,9 @@ public class Game_Controller {
 
     @RequestMapping("/getGame")
     @CrossOrigin("*")
-    public Game getGame(String roomId){
-        return service.getGame(roomId);
+    public Game getGame(){
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.getGame(session.getId());
     }
 
     @RequestMapping("/getTime")
