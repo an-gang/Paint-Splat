@@ -1,6 +1,7 @@
 package com.wangdefa.paint_splat.controller;
 
 
+import com.wangdefa.paint_splat.entity.Game;
 import com.wangdefa.paint_splat.service.Game_Service_Interface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,13 +12,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 
 import javax.servlet.http.HttpSession;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 
 @RestController
 public class Game_Controller {
-
     @Autowired
     private Game_Service_Interface service;
 
@@ -34,17 +33,43 @@ public class Game_Controller {
         return new int[]{random.nextInt(300), random.nextInt(300)};
     }
 
+    @RequestMapping("/getRooms")
+    @CrossOrigin("*")
+    public Set<String> getRooms() {
+        return service.getRooms();
+    }
 
-    @RequestMapping("/test2")
-    public String test2() {
+    @RequestMapping("/createRoom")
+    @CrossOrigin("*")
+    public String createRoom() {
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.createRoom(session.getId());
+    }
 
-//        service.test();
+    @RequestMapping("/joinRoom")
+    @CrossOrigin("*")
+    public String joinGame(String roomId) {
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.joinRoom(session.getId(), roomId);
+    }
 
-        return "123";
+    @RequestMapping("/checkRoomId")
+    @CrossOrigin("*")
+    public String checkRoomId() {
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.checkRoomId(session.getId());
+    }
+
+    @RequestMapping("/getGame")
+    @CrossOrigin("*")
+    public Game getGame(String roomId){
+        return service.getGame(roomId);
     }
 
 
-
-
-
+    @RequestMapping("/printConnections")
+    @CrossOrigin("*")
+    public void printConnections(String roomId) {
+        service.printConnections();
+    }
 }

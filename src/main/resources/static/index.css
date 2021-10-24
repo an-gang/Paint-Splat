@@ -11,8 +11,10 @@ body {
 #panel {
     width: 60%;
     background-color: beige;
+    margin: 0 auto;
 }
 #roomList{
     width: 60%;
     background-color: aquamarine;
+    margin: 0 auto;
 }

@@ -2,25 +2,23 @@ package com.wangdefa.paint_splat.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Game {
-    private String id;
     private Date startTime;
     private int step;
-    private String[] players;
+    private ArrayList<String> players;
+    private ArrayList<Integer> scores;
     private ArrayList<Paint> paints;
     private ArrayList<double[]> boardPositions;
     private long time = 0;
     private final static long timeSpan = 600000;
     private final static int animationSpeed = 50;
 
-    public Game(String id) {
-        this.id = id;
-        startTime = new Date();
+
+    public Game() {
         step = 1;
-        players = new String[4];
+        players = new ArrayList<>();
         paints = new ArrayList<>();
         boardPositions = new ArrayList<>();
 
@@ -28,7 +26,7 @@ public class Game {
         Random random = new Random();
         long timeUse = 0;
         while (timeUse < timeSpan * 1.5) {
-            boardPositions.add(new double[]{random.nextInt(76), random.nextInt(76)});
+            boardPositions.add(new double[]{random.nextInt(51), random.nextInt(51)});
             timeUse += calculateDistance(boardPositions.get(boardPositions.size() - 1), boardPositions.get(boardPositions.size() - 2)) / step * animationSpeed;
         }
     }
@@ -36,15 +34,6 @@ public class Game {
     private double calculateDistance(double[] point1, double[] point2) {
 //        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
-    }
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Date getStartTime() {
@@ -61,14 +50,6 @@ public class Game {
 
     public void setStep(int step) {
         this.step = step;
-    }
-
-    public String[] getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(String[] players) {
-        this.players = players;
     }
 
     public ArrayList<Paint> getPaints() {
@@ -93,5 +74,13 @@ public class Game {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public ArrayList<String> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<String> players) {
+        this.players = players;
     }
 }

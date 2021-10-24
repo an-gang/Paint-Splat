@@ -2,7 +2,16 @@ package com.wangdefa.paint_splat.service;
 
 import com.wangdefa.paint_splat.entity.Game;
 
-public interface Game_Service_Interface {
-    Game service();
+import java.util.HashMap;
+import java.util.Set;
 
+public interface Game_Service_Interface {
+    Set<String> getRooms();
+    String createRoom(String playerId);
+    String joinRoom(String playerId, String roomId);
+    String checkRoomId(String playerId);
+    Game getGame(String roomId);
+
+
+    void printConnections();
 }

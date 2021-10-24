@@ -16,8 +16,8 @@ body {
 }
 
 #board{
-    width: 25%;
-    height: 25%;
+    width: 50%;
+    height: 50%;
     background-color: azure;
     position: relative;
     left: 0;
@@ -25,11 +25,10 @@ body {
 }
 
 .paint{
-    width: 100px;
-    height: 100px;
+    width: 5%;
     position: absolute;
-    left: 35px;
-    top: 67px;
+    left: 34%;
+    top: 34%;
     background-color: beige;
 }
 
