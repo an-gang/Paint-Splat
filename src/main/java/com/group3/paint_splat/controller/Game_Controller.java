@@ -67,11 +67,11 @@ public class Game_Controller {
         return service.getGame(session.getId());
     }
 
-    @RequestMapping("/getTime")
+    @RequestMapping("/getTimeAfterStart")
     @CrossOrigin("*")
-    public long getTime() {
+    public long getTimeAfterStart() {
         HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
-        return service.getTime(session.getId());
+        return service.getTimeAfterStart(session.getId());
     }
 
     @RequestMapping("/quitRoom")

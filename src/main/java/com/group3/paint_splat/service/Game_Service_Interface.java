@@ -15,7 +15,7 @@ public interface Game_Service_Interface {
 
     Game getGame(String playerId);
 
-    long getTime(String playerId);
+    long getTimeAfterStart(String id);
 
     void quitRoom(String playerId);
 

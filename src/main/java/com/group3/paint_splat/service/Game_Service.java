@@ -46,11 +46,9 @@ public class Game_Service implements Game_Service_Interface {
                     game.setTimeAfterCreate(currentTime.getTime() - game.getCreateTime().getTime());
                     if (game.isStart()) {
                         timer.cancel();
-                        System.out.println("manual cancel");
                     } else if (game.getTimeAfterCreate() / 1000 >= 60) {
                         startGame(playerId);
                         timer.cancel();
-                        System.out.println("auto cancel");
                     }
                 }
             };
@@ -101,7 +99,7 @@ public class Game_Service implements Game_Service_Interface {
     }
 
     @Override
-    public long getTime(String playerId) {
+    public long getTimeAfterStart(String playerId) {
         return rooms.get(checkRoomId(playerId)).getTimeAfterStart();
     }
 
