@@ -151,6 +151,7 @@ public class Game_Service implements Game_Service_Interface {
     @Override
     public boolean shoot(String playerId, double[] position) {
         Game game = rooms.get(checkRoomId(playerId));
+        //遍历判断中心点距离
         game.getPaints().add(new Paint(playerId, position));
         return true;
     }
