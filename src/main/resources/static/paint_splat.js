@@ -5,29 +5,28 @@ $(document).ready(function () {
     var boardPositions;
     var currentPosition = 0;
     var step;
-    var time;
-    var paints;
+    var timeAfterStart;
+    var timeAfterCreate;
     var isStart;
+    var paints;
 
     $.post("/checkRoomId", {}, function (RoomId) {
         $("#roomNumber").text("Room Number: " + RoomId);
     });
     $.post("/getPlayerId", {}, function (playerId) {
-        sessionId = playerId
+        sessionId = playerId;
         $.post("/getGame", {}, function (data) {
             console.log(data);
-            if (data.players[0] === sessionId) {
-                $("#start").show();
-            }
-            players = data.players;
-            scores = data.scores;
-            time = data.time;
-            renderBoard();
             boardPositions = data.boardPositions;
         });
     });
 
-    function renderBoard() {
+    function renderBoard(playersId) {
+        if (playersId === sessionId && !isStart) {
+            $("#start").show();
+        } else {
+            $("#start").hide();
+        }
         var scoreBoard = $("#scoreBoard");
         scoreBoard.html("");
         for (var i = 0; i < players.length; i++) {
@@ -37,7 +36,7 @@ $(document).ready(function () {
                 scoreBoard.append("<div>Player " + (i + 1) + ": " + scores[0] + "</div>")
             }
         }
-        $("#timer").text("Time: " + (60 - Math.round(time / 1000)));
+        $("#timer").text("Time Remaining: " + (60 - Math.round(timeAfterStart / 1000)));
     }
 
     var gameUpdater = setInterval(updateGame, 50);
@@ -46,10 +45,11 @@ $(document).ready(function () {
         $.post("/getGame", {}, function (data) {
             players = data.players;
             scores = data.scores;
-            time = data.time;
+            timeAfterStart = data.timeAfterStart;
+            timeAfterCreate = data.timeAfterCreate;
             isStart = data.start;
             step = data.step;
-            renderBoard();
+            renderBoard(players[0]);
         });
     }
 
@@ -57,10 +57,14 @@ $(document).ready(function () {
         $.post("/startGame", {})
     });
 
+    $("#quit").click(function () {
+        $.post("/quitRoom", {});
+        window.location.href = "index.html";
+    });
 
     var gameStarter = setInterval(function () {
         if (isStart) {
-            if(!time||time===0){
+            if (!timeAfterStart || timeAfterStart === 0) {
                 playStartAnimation();
             }
             $("#aim").show();
@@ -81,16 +85,14 @@ $(document).ready(function () {
                 });
             });
         });
-
     }
 
     function moveBoard() {
         var current = boardPositions[currentPosition];
         var target = boardPositions[currentPosition + 1];
         if (target) {
-            var time = Math.round(calculateDistance(current, target) / step);
-            console.log(time);
-            $("#board").animate({top: target[0] + "%", left: target[1] + "%"}, time, function () {
+            var timeUse = Math.round(calculateDistance(current, target) / step);
+            $("#board").animate({top: target[0] + "%", left: target[1] + "%"}, timeUse, function () {
                 currentPosition++;
                 moveBoard();
             });
@@ -100,8 +102,6 @@ $(document).ready(function () {
     function calculateDistance(point1, point2) {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
-
-
 
 
 });

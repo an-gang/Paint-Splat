@@ -123,5 +123,4 @@ public class Game_Controller {
         service.printConnections();
     }
 
-
 }

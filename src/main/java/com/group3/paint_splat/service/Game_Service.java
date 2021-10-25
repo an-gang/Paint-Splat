@@ -2,7 +2,6 @@ package com.group3.paint_splat.service;
 
 
 import com.group3.paint_splat.other.GameTimer;
-import com.group3.paint_splat.other.ID_generator;
 import com.group3.paint_splat.entity.Game;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class Game_Service implements Game_Service_Interface {
             //判断房价号不可重复
             do {
                 isExist = false;
-                newId = ID_generator.generateID();
+                newId = generateID();
                 for (String roomId : rooms.keySet()) {
                     if (roomId.equals(newId)) {
                         isExist = true;
@@ -84,7 +83,7 @@ public class Game_Service implements Game_Service_Interface {
 
     @Override
     public long getTime(String playerId) {
-        return rooms.get(checkRoomId(playerId)).getTime();
+        return rooms.get(checkRoomId(playerId)).getTimeAfterStart();
     }
 
     @Override
@@ -119,16 +118,18 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
+    @Override
     public void startGame(String playerId) {
         Game game = rooms.get(checkRoomId(playerId));
-        if (!game.isStart()) {
-            game.setStart(true);
-            game.setStartTime(new Date());
-            Timer timer = new Timer();
-            GameTimer gameTimer = new GameTimer();
-            gameTimer.setGame(game);
-            timer.schedule(gameTimer, 3000, 1000);
-        }
+        GameTimer.startGame(game);
+    }
 
+    private static String generateID() {
+        Random random = new Random();
+        String id = Integer.toString(random.nextInt(1000000));
+        while (id.length() < 6) {
+            id = "0" + id;
+        }
+        return id;
     }
 }
