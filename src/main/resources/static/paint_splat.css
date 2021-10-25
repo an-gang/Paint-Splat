@@ -48,6 +48,10 @@ body {
     background-color: orange;
 }
 
+.mine {
+    background-color: yellowgreen;
+}
+
 #start {
     display: none;
 }
@@ -88,6 +92,6 @@ body {
 }
 
 #gameOver p {
-    font:3vh bold;
+    font: 3vh bold;
     line-height: 0.1vh;
 }
