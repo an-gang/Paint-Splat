@@ -39,7 +39,7 @@ $(document).ready(function () {
         $("#timer").text("Time Remaining: " + (60 - Math.round(timeAfterStart / 1000)));
     }
 
-    var gameUpdater = setInterval(updateGame, 50);
+    // var gameUpdater = setInterval(updateGame, 50);
 
     function updateGame() {
         $.post("/getGame", {}, function (data) {
@@ -62,16 +62,16 @@ $(document).ready(function () {
         window.location.href = "index.html";
     });
 
-    var gameStarter = setInterval(function () {
-        if (isStart) {
-            if (!timeAfterStart || timeAfterStart === 0) {
-                playStartAnimation();
-            }
-            $("#aim").show();
-            setTimeout(moveBoard, 3000);
-            window.clearInterval(gameStarter)
-        }
-    }, 50);
+    // var gameStarter = setInterval(function () {
+    //     if (isStart) {
+    //         if (!timeAfterStart || timeAfterStart === 0) {
+    //             playStartAnimation();
+    //         }
+    //         $("#aim").show();
+    //         setTimeout(moveBoard, 3000);
+    //         window.clearInterval(gameStarter)
+    //     }
+    // }, 50);
 
     function playStartAnimation() {
         $("#num3").animate({opacity: 1}, 500, function () {
@@ -105,29 +105,22 @@ $(document).ready(function () {
 
 
     $(document).keydown(function (event) {
-        var aimPos = $("#aim").position();
-        console.log(aimPos.left);
-        switch(event.which){
+        var aim = $("#aim");
+        switch (event.which) {
             case 37:
-                console.log("999");
-                $("#aim").css("left",aimPos.left-10+"px");
+                aim.css({left: parseFloat(aim.css("left")) - 10});
                 break;
             case 38:
-                $("#aim").css("top",aimPos.top-10+"px");
+                aim.css({top: parseFloat(aim.css("top")) - 10});
                 break;
             case 39:
-                console.log("123");
-                $("#aim").css("left",(aimPos.left+10)+"px");
+                aim.css({left: parseFloat(aim.css("left")) + 10});
                 break;
             case 40:
-                $("#aim").css("top",aimPos.top+10+"px");
-                break;
-            default:
-                console.log("请按上下左右键");
+                aim.css({top: parseFloat(aim.css("top")) + 10});
                 break;
         }
     })
-
 
 
 });
