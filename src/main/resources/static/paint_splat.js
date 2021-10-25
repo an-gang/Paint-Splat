@@ -39,7 +39,7 @@ $(document).ready(function () {
         $("#timer").text("Time Remaining: " + (60 - Math.round(timeAfterStart / 1000)));
     }
 
-    // var gameUpdater = setInterval(updateGame, 50);
+    var gameUpdater = setInterval(updateGame, 50);
 
     function updateGame() {
         $.post("/getGame", {}, function (data) {
@@ -62,16 +62,16 @@ $(document).ready(function () {
         window.location.href = "index.html";
     });
 
-    // var gameStarter = setInterval(function () {
-    //     if (isStart) {
-    //         if (!timeAfterStart || timeAfterStart === 0) {
-    //             playStartAnimation();
-    //         }
-    //         $("#aim").show();
-    //         setTimeout(moveBoard, 3000);
-    //         window.clearInterval(gameStarter)
-    //     }
-    // }, 50);
+    var gameStarter = setInterval(function () {
+        if (isStart) {
+            if (!timeAfterStart || timeAfterStart === 0) {
+                playStartAnimation();
+            }
+            $("#aim").show();
+            setTimeout(moveBoard, 3000);
+            window.clearInterval(gameStarter)
+        }
+    }, 50);
 
     function playStartAnimation() {
         $("#num3").animate({opacity: 1}, 500, function () {
