@@ -30,7 +30,7 @@ $(document).ready(function () {
                     if (!timeAfterStart || timeAfterStart === 0) {
                         playStartAnimation();
                         setTimeout(function () {
-                            $("#aim").show();
+                            enableShoot();
                             moveBoard();
                         }, 3000);
                     } else {
@@ -49,7 +49,7 @@ $(document).ready(function () {
                                 currentPosition++;
                             }
                         }
-                        $("#aim").show();
+                        enableShoot();
                         moveBoard();
                     }
                     window.clearInterval(gameStarter)
@@ -146,24 +146,27 @@ $(document).ready(function () {
         window.location.href = "index.html";
     });
 
-    $(document).keydown(function (event) {
-        var aim = $("#aim");
-        switch (event.which) {
-            case 37:
-                aim.css({left: parseFloat(aim.css("left")) - 8});
-                break;
-            case 38:
-                aim.css({top: parseFloat(aim.css("top")) - 8});
-                break;
-            case 39:
-                aim.css({left: parseFloat(aim.css("left")) + 8});
-                break;
-            case 40:
-                aim.css({top: parseFloat(aim.css("top")) + 8});
-                break;
-        }
-    });
 
+    function enableShoot() {
+        $("#aim").show();
+        $(document).keydown(function (e) {
+            var aim = $("#aim");
+            switch (e.which) {
+                case 37:
+                    aim.css({left: parseFloat(aim.css("left")) - 8});
+                    break;
+                case 38:
+                    aim.css({top: parseFloat(aim.css("top")) - 8});
+                    break;
+                case 39:
+                    aim.css({left: parseFloat(aim.css("left")) + 8});
+                    break;
+                case 40:
+                    aim.css({top: parseFloat(aim.css("top")) + 8});
+                    break;
+            }
+        });
+    }
 
 });
 
