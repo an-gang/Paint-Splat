@@ -2,10 +2,7 @@ package com.group3.paint_splat.entity;
 
 import com.group3.paint_splat.other.RoomTimer;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
-import java.util.Timer;
+import java.util.*;
 
 public class Game {
     private Date createTime;
@@ -37,7 +34,7 @@ public class Game {
         boardPositions.add(new double[]{0, 0});
         Random random = new Random();
         long timeUse = 0;
-        while (timeUse < timeSpan) {
+        while (timeUse < timeSpan * 2) {
             boardPositions.add(new double[]{random.nextInt(51), random.nextInt(51)});
             timeUse += calculateDistance(boardPositions.get(boardPositions.size() - 1), boardPositions.get(boardPositions.size() - 2)) / step;
         }

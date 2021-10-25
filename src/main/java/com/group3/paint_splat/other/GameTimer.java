@@ -1,6 +1,7 @@
 package com.group3.paint_splat.other;
 
 import com.group3.paint_splat.entity.Game;
+
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,9 +16,15 @@ public class GameTimer extends TimerTask {
     @Override
     public void run() {
         Date currentTime = new Date();
-        game.setTimeAfterStart(currentTime.getTime() - game.getStartTime().getTime()-3000);
+        game.setTimeAfterStart(currentTime.getTime() - game.getStartTime().getTime() - 3000);
+        if (game.getTimeAfterStart() / 1000 > 40) {
+            game.setStep(0.03);
+        } else if (game.getTimeAfterStart() / 1000 > 20) {
+            game.setStep(0.02);
+        }
     }
-    public static void startGame(Game game){
+
+    public static void startGame(Game game) {
         if (!game.isStart()) {
             game.setStart(true);
             game.setStartTime(new Date());
