@@ -66,4 +66,5 @@ body {
     top: 100%;
     left: 100%;
     transform: translate(-50%, -50%);
+    display: none;
 }
