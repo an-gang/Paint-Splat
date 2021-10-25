@@ -168,6 +168,14 @@ $(document).ready(function () {
         });
     }
 
+    function renderPaints() {
+        console.log(paints);
+
+    }
+
+    $("#test").click(function () {
+        renderPaints();
+    });
 });
 
 
