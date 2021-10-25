@@ -1,7 +1,5 @@
 package com.group3.paint_splat.entity;
 
-import com.group3.paint_splat.other.RoomTimer;
-
 import java.util.*;
 
 public class Game {
@@ -38,10 +36,6 @@ public class Game {
             boardPositions.add(new double[]{random.nextInt(51), random.nextInt(51)});
             timeUse += calculateDistance(boardPositions.get(boardPositions.size() - 1), boardPositions.get(boardPositions.size() - 2)) / step;
         }
-        Timer timer = new Timer();
-        RoomTimer roomTimer = new RoomTimer();
-        roomTimer.setGame(this);
-        timer.schedule(roomTimer, 0, 1000);
     }
 
     private double calculateDistance(double[] point1, double[] point2) {

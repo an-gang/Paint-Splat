@@ -45,7 +45,7 @@ body {
 }
 
 #scoreBoard {
-    background-color: orangered;
+    background-color: orange;
 }
 
 #start {
@@ -60,11 +60,34 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#aim{
+#aim {
     position: absolute;
-    width: 12%;
-    top: 100%;
-    left: 100%;
+    width: 8vh;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     display: none;
+}
+
+#cover {
+    background-color: rgba(211, 211, 211, 0.4);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+#gameOver {
+    background-color: chocolate;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#gameOver p {
+    font:3vh bold;
+    line-height: 0.1vh;
 }

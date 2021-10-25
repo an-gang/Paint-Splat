@@ -73,7 +73,7 @@ $(document).ready(function () {
     }
 
     function moveBoard() {
-        console.log(boardPositions.length + "----" + (currentPosition + 1) + "----" + step);
+        console.log(boardPositions.length + "----" + (currentPosition + 1) + "----" + timeAfterStart / 1000 + "----" + step);
         var current = boardPositions[currentPosition];
         var target = boardPositions[currentPosition + 1];
         if (target) {
@@ -101,6 +101,15 @@ $(document).ready(function () {
             scores = data.scores;
             paints = data.paints;
             renderBoard(players[0]);
+            if (timeAfterStart >= 60000) {
+                window.clearInterval(gameUpdater);
+                $("#gameOver").append($("#scoreBoard"));
+                $("#gameOver").append($("#quit"));
+                $("#cover").show();
+                setTimeout(function () {
+                    $("#quit").click();
+                }, 10000);
+            }
         });
     }
 
@@ -141,19 +150,19 @@ $(document).ready(function () {
         var aim = $("#aim");
         switch (event.which) {
             case 37:
-                aim.css({left: parseFloat(aim.css("left")) - 10});
+                aim.css({left: parseFloat(aim.css("left")) - 8});
                 break;
             case 38:
-                aim.css({top: parseFloat(aim.css("top")) - 10});
+                aim.css({top: parseFloat(aim.css("top")) - 8});
                 break;
             case 39:
-                aim.css({left: parseFloat(aim.css("left")) + 10});
+                aim.css({left: parseFloat(aim.css("left")) + 8});
                 break;
             case 40:
-                aim.css({top: parseFloat(aim.css("top")) + 10});
+                aim.css({top: parseFloat(aim.css("top")) + 8});
                 break;
         }
-    })
+    });
 
 
 });
