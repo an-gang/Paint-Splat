@@ -110,7 +110,9 @@ public class Game_Service implements Game_Service_Interface {
         if (game != null) {
             Iterator<String> iterator = game.getPlayers().iterator();
             while (iterator.hasNext()) {
-                if (iterator.next().equals(playerId)) {
+                int index = iterator.next().indexOf(playerId);
+                if (index != -1) {
+                    game.getScores().remove(index);
                     iterator.remove();
                     break;
                 }
