@@ -101,7 +101,29 @@ $(document).ready(function () {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
-
+    $(document).keydown(function (event) {
+        var aimPos = $("#aim").position();
+        console.log(aimPos.left);
+        switch(event.which){
+            case 37:
+                console.log("999");
+                $("#aim").css("left",aimPos.left-10+"px");
+                break;
+            case 38:
+                $("#aim").css("top",aimPos.top-10+"px");
+                break;
+            case 39:
+                console.log("123");
+                $("#aim").css("left",(aimPos.left+10)+"px");
+                break;
+            case 40:
+                $("#aim").css("top",aimPos.top+10+"px");
+                break;
+            default:
+                console.log("请按上下左右键");
+                break;
+        }
+    })
 
 
 });
