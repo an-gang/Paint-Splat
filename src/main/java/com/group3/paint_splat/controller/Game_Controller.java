@@ -81,13 +81,6 @@ public class Game_Controller {
         service.quitRoom(session.getId());
     }
 
-    @RequestMapping("/countPlayer")
-    @CrossOrigin("*")
-    public int countPlayer() {
-        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
-        return service.countPlayer(session.getId());
-    }
-
     @RequestMapping("/getPlayerId")
     @CrossOrigin("*")
     public String getPlayerId() {
@@ -117,9 +110,16 @@ public class Game_Controller {
         service.startGame(session.getId());
     }
 
+    @RequestMapping("/shoot")
+    @CrossOrigin("*")
+    public boolean shoot(double top, double left) {
+        HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
+        return service.shoot(session.getId(), new double[]{top, left});
+    }
+
     @RequestMapping("/printConnections")
     @CrossOrigin("*")
-    public void printConnections(String roomId) {
+    public void printConnections() {
         service.printConnections();
     }
 

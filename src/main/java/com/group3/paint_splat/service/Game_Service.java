@@ -2,6 +2,7 @@ package com.group3.paint_splat.service;
 
 
 import com.group3.paint_splat.entity.Game;
+import com.group3.paint_splat.entity.Paint;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -108,7 +109,7 @@ public class Game_Service implements Game_Service_Interface {
     public void quitRoom(String playerId) {
         String roomId = checkRoomId(playerId);
         Game game = rooms.get(roomId);
-        if(game!=null){
+        if (game != null) {
             Iterator<String> iterator = game.getPlayers().iterator();
             while (iterator.hasNext()) {
                 if (iterator.next().equals(playerId)) {
@@ -118,22 +119,6 @@ public class Game_Service implements Game_Service_Interface {
             }
             if (game.getPlayers().size() == 0) {
                 rooms.remove(roomId);
-            }
-        }
-    }
-
-    @Override
-    public int countPlayer(String playerId) {
-        return rooms.get(checkRoomId(playerId)).getPlayers().size();
-    }
-
-    @Override
-    public void printConnections() {
-        Iterator<Map.Entry<String, Game>> iterator = rooms.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Game> entry = iterator.next();
-            for (String player : entry.getValue().getPlayers()) {
-                System.out.println(entry.getKey() + "----" + player);
             }
         }
     }
@@ -162,6 +147,24 @@ public class Game_Service implements Game_Service_Interface {
                 }
             };
             timer.schedule(gameTimer, 3000, 1000);
+        }
+    }
+
+    @Override
+    public boolean shoot(String playerId, double[] position) {
+        Game game = rooms.get(checkRoomId(playerId));
+        game.getPaints().add(new Paint(playerId, position));
+        return true;
+    }
+
+    @Override
+    public void printConnections() {
+        Iterator<Map.Entry<String, Game>> iterator = rooms.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Game> entry = iterator.next();
+            for (String player : entry.getValue().getPlayers()) {
+                System.out.println(entry.getKey() + "----" + player);
+            }
         }
     }
 

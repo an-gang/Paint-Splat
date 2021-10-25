@@ -19,9 +19,11 @@ public interface Game_Service_Interface {
 
     void quitRoom(String playerId);
 
-    int countPlayer(String playerId);
-
     void startGame(String playerId);
 
+    boolean shoot(String playerId, double[] doubles);
+
     void printConnections();
+
+
 }
