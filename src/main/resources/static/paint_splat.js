@@ -171,8 +171,24 @@ $(document).ready(function () {
 
     function renderPaints() {
         console.log(paints);
+        for(var i=0; i<= paints.length; i++){
+            var sessionArray = {};
+            var item = paints[i].player;
+            item = item.toString();
+            if (sessionArray.indexOf(item) != -1){
+                sessionArray.append(i);
+            }
+        }
+        for(var i = 0; i<=sessionArray.length; i++){
+            var x =  paints[i].position[0]; // x
+            var y = paints[i].position[1]; // y
+            var img = "Img/paint";
+            img = img.toString().append(i+1);
+            // $("#board").append("<img class='paint' style="top = "+ x+" %;left: y%' src= img>") // Img/paint1.png , paint2
+            $("#board").append("< img class='paint' style='top:"+ x +"%;left: "+ y +"%' src="+ img+ ".png>")
+        }
 
-        $("#board").append("<img class='paint' style='top:32%;left: 23%' src='Img/paint2.png'>")
+        //$("#board").append("<img class='paint' style='top:32%;left: 23%' src='Img/paint2.png'>")
 
 
     }
