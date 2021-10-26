@@ -196,6 +196,50 @@ $(document).ready(function () {
                     keyDownSet.delete(40);
             }
         });
+
+        var moveSpeed = 50;
+
+        var upTimerTask;
+        $("#up").mousedown(function () {
+            keyDownSet.add(38);
+            upTimerTask = setInterval(moveAim, moveSpeed);
+        });
+        $("#up").mouseup(function () {
+            window.clearInterval(upTimerTask);
+            keyDownSet.delete(38);
+        });
+        var downTimerTask;
+        $("#down").mousedown(function () {
+            keyDownSet.add(40);
+            downTimerTask = setInterval(moveAim, moveSpeed);
+        });
+        $("#down").mouseup(function () {
+            window.clearInterval(downTimerTask);
+            keyDownSet.delete(40);
+        });
+        var leftTimerTask;
+        $("#left").mousedown(function () {
+            keyDownSet.add(37);
+            leftTimerTask = setInterval(moveAim, moveSpeed);
+        });
+        $("#left").mouseup(function () {
+            window.clearInterval(leftTimerTask);
+            keyDownSet.delete(37);
+        });
+        var rightTimerTask;
+        $("#right").mousedown(function () {
+            keyDownSet.add(39);
+            rightTimerTask = setInterval(moveAim, moveSpeed);
+        });
+        $("#right").mouseup(function () {
+            window.clearInterval(rightTimerTask);
+            keyDownSet.delete(39);
+        });
+        $("#shoot").mousedown(function () {
+            shoot();
+        });
+
+
     }
 
     function moveAim() {
@@ -266,6 +310,7 @@ $(document).ready(function () {
             }
         }
     }
+
 
 });
 
