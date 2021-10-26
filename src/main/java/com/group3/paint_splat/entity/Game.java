@@ -13,6 +13,8 @@ public class Game {
     private ArrayList<Paint> paints;
     private ArrayList<double[]> boardPositions;
     private boolean isStart;
+    private Timer roomTimer;
+    private Timer gameTimer;
     private final static long timeSpan = 60000;
 
     public Game() {
@@ -141,8 +143,23 @@ public class Game {
         isStart = start;
     }
 
+    public Timer getRoomTimer() {
+        return roomTimer;
+    }
+
+    public void setRoomTimer(Timer roomTimer) {
+        this.roomTimer = roomTimer;
+    }
+
+    public Timer getGameTimer() {
+        return gameTimer;
+    }
+
+    public void setGameTimer(Timer gameTimer) {
+        this.gameTimer = gameTimer;
+    }
+
     public static long getTimeSpan() {
         return timeSpan;
     }
-
 }

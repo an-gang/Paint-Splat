@@ -37,22 +37,22 @@ public class Game_Service implements Game_Service_Interface {
             rooms.put(newId, game);
             game.getPlayers().add(playerId);
             game.getScores().add(0);
-
-            Timer timer = new Timer();
-            TimerTask roomTimer = new TimerTask() {
+            game.setRoomTimer(new Timer());
+            Timer roomTimer = game.getRoomTimer();
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     Date currentTime = new Date();
                     game.setTimeAfterCreate(currentTime.getTime() - game.getCreateTime().getTime());
                     if (game.isStart()) {
-                        timer.cancel();
+                        roomTimer.cancel();
                     } else if (game.getTimeAfterCreate() / 1000 >= 60) {
                         startGame(playerId);
-                        timer.cancel();
+                        roomTimer.cancel();
                     }
                 }
             };
-            timer.schedule(roomTimer, 0, 1000);
+            roomTimer.schedule(timerTask, 0, 1000);
 
             return newId;
         } else {
@@ -126,6 +126,8 @@ public class Game_Service implements Game_Service_Interface {
                 }
             }
             if (game.getPlayers().size() == 0) {
+                game.getRoomTimer().cancel();
+                game.getGameTimer().cancel();
                 rooms.remove(roomId);
             }
         }
@@ -138,14 +140,15 @@ public class Game_Service implements Game_Service_Interface {
         if (!game.isStart()) {
             game.setStart(true);
             game.setStartTime(new Date());
-            Timer timer = new Timer();
-            TimerTask gameTimer = new TimerTask() {
+            game.setGameTimer(new Timer());
+            Timer gameTimer = game.getGameTimer();
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     Date currentTime = new Date();
                     game.setTimeAfterStart(currentTime.getTime() - game.getStartTime().getTime() - 3000);
                     if (game.getTimeAfterStart() / 1000 > 60) {
-                        timer.cancel();
+                        gameTimer.cancel();
                         rooms.remove(roomId);
                     } else if (game.getTimeAfterStart() / 1000 > 40) {
                         game.setStep(0.03);
@@ -154,7 +157,7 @@ public class Game_Service implements Game_Service_Interface {
                     }
                 }
             };
-            timer.schedule(gameTimer, 3000, 1000);
+            gameTimer.schedule(timerTask, 3000, 1000);
         }
     }
 
