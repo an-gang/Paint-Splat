@@ -154,22 +154,22 @@ $(document).ready(function () {
         $(document).keydown(function (e) {
             switch (e.keyCode) {
                 case 37:
-                case 100:
+                case 65:
                     keyDownSet.add(37);
                     moveAim();
                     break;
                 case 38:
-                case 104:
+                case 87:
                     keyDownSet.add(38);
                     moveAim();
                     break;
                 case 39:
-                case 102:
+                case 68:
                     keyDownSet.add(39);
                     moveAim();
                     break;
                 case 40:
-                case 98:
+                case 83:
                     keyDownSet.add(40);
                     moveAim();
                     break;
@@ -180,19 +180,19 @@ $(document).ready(function () {
         $(document).keyup(function (e) {
             switch (e.keyCode) {
                 case 37:
-                case 100:
+                case 65:
                     keyDownSet.delete(37);
                     break;
                 case 38:
-                case 104:
+                case 87:
                     keyDownSet.delete(38);
                     break;
                 case 39:
-                case 102:
+                case 68:
                     keyDownSet.delete(39);
                     break;
                 case 40:
-                case 98:
+                case 83:
                     keyDownSet.delete(40);
             }
         });
@@ -220,28 +220,36 @@ $(document).ready(function () {
     function shoot() {
         var board = $("#board");
         var aim = $("#aim");
-        var aimTop = aim.offset().top + (aim.height() / 2);
-        var aimLeft = aim.offset().left + (aim.width() / 2);
+        var aimTop = aim.offset().top + aim.height() / 2;
+        var aimLeft = aim.offset().left + aim.width() / 2;
         var boardTop = board.offset().top;
         var boardLeft = board.offset().left;
         var boardBottomRightPointTop = boardTop + board.height();
         var boardBottomRightPointLeft = boardLeft + board.width();
-        if (aimTop > boardTop && aimTop < boardBottomRightPointTop && aimLeft > boardLeft && aimLeft < boardBottomRightPointLeft) {
+        if (aimTop > boardTop + aim.height() / 2 && aimTop < boardBottomRightPointTop - aim.height() / 2 && aimLeft > boardLeft + aim.width() / 2 && aimLeft < boardBottomRightPointLeft - aim.width() / 2) {
             var positionTop = (aimTop - boardTop) * 100 / (boardBottomRightPointTop - boardTop);
             var positionLeft = (aimLeft - boardLeft) * 100 / (boardBottomRightPointLeft - boardLeft);
             $.post("/shoot", {top: positionTop, left: positionLeft}, function (result) {
                 if (!result) {
-                    aim.animate({opacity: 0}, 100, function () {
-                        aim.animate({opacity: 1}, 100, function () {
-                            aim.animate({opacity: 0}, 100, function () {
-                                aim.animate({opacity: 1}, 100);
-                            });
-                        });
-                    });
+                    playShootFailedAnimation();
                 }
             })
+        } else {
+            playShootFailedAnimation();
         }
     }
+
+    function playShootFailedAnimation() {
+        var aim = $("#aim");
+        aim.animate({opacity: 0}, 100, function () {
+            aim.animate({opacity: 1}, 100, function () {
+                aim.animate({opacity: 0}, 100, function () {
+                    aim.animate({opacity: 1}, 100);
+                });
+            });
+        });
+    }
+
 
     function renderPaints() {
         $("#board").html("");

@@ -11,8 +11,8 @@ body {
 #panel {
     /*width: 80vh;*/
     /*height: 50vh;*/
-    width: 130vh;
-    height: 80vh;
+    width: 130vmin;
+    height: 80vmin;
     background-color: aqua;
     margin: auto;
 }
