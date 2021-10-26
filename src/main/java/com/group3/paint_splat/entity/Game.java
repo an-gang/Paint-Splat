@@ -42,6 +42,20 @@ public class Game {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
+    public boolean shoot(String playerId, double[] doubles) {
+        Iterator<Paint> iterator = paints.iterator();
+        boolean isOverlapped = false;
+        while (iterator.hasNext()){
+            Paint next = iterator.next();
+
+
+        }
+
+
+        return true;
+    }
+
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -125,4 +139,5 @@ public class Game {
     public static long getTimeSpan() {
         return timeSpan;
     }
+
 }
