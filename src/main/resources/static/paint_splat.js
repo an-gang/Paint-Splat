@@ -154,22 +154,22 @@ $(document).ready(function () {
         $(document).keydown(function (e) {
             switch (e.keyCode) {
                 case 37:
-                case 100:
+                case 65:
                     keyDownSet.add(37);
                     moveAim();
                     break;
                 case 38:
-                case 104:
+                case 87:
                     keyDownSet.add(38);
                     moveAim();
                     break;
                 case 39:
-                case 102:
+                case 68:
                     keyDownSet.add(39);
                     moveAim();
                     break;
                 case 40:
-                case 98:
+                case 83:
                     keyDownSet.add(40);
                     moveAim();
                     break;
@@ -180,19 +180,19 @@ $(document).ready(function () {
         $(document).keyup(function (e) {
             switch (e.keyCode) {
                 case 37:
-                case 100:
+                case 65:
                     keyDownSet.delete(37);
                     break;
                 case 38:
-                case 104:
+                case 87:
                     keyDownSet.delete(38);
                     break;
                 case 39:
-                case 102:
+                case 68:
                     keyDownSet.delete(39);
                     break;
                 case 40:
-                case 98:
+                case 83:
                     keyDownSet.delete(40);
             }
         });
