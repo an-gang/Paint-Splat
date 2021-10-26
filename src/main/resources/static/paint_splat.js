@@ -220,13 +220,13 @@ $(document).ready(function () {
     function shoot() {
         var board = $("#board");
         var aim = $("#aim");
-        var aimTop = aim.offset().top + (aim.height() / 2);
-        var aimLeft = aim.offset().left + (aim.width() / 2);
+        var aimTop = aim.offset().top + aim.height() / 2;
+        var aimLeft = aim.offset().left + aim.width() / 2;
         var boardTop = board.offset().top;
         var boardLeft = board.offset().left;
         var boardBottomRightPointTop = boardTop + board.height();
         var boardBottomRightPointLeft = boardLeft + board.width();
-        if (aimTop > boardTop && aimTop < boardBottomRightPointTop && aimLeft > boardLeft && aimLeft < boardBottomRightPointLeft) {
+        if (aimTop > boardTop + aim.height() / 2 && aimTop < boardBottomRightPointTop - aim.height() / 2 && aimLeft > boardLeft + aim.width() / 2 && aimLeft < boardBottomRightPointLeft - aim.width() / 2) {
             var positionTop = (aimTop - boardTop) * 100 / (boardBottomRightPointTop - boardTop);
             var positionLeft = (aimLeft - boardLeft) * 100 / (boardBottomRightPointLeft - boardLeft);
             $.post("/shoot", {top: positionTop, left: positionLeft}, function (result) {
@@ -240,6 +240,7 @@ $(document).ready(function () {
     }
 
     function playShootFailedAnimation() {
+        var aim = $("#aim");
         aim.animate({opacity: 0}, 100, function () {
             aim.animate({opacity: 1}, 100, function () {
                 aim.animate({opacity: 0}, 100, function () {
