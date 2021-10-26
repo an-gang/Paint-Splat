@@ -9,6 +9,7 @@ $(document).ready(function () {
     var players;
     var scores;
     var paints;
+    var keyDownSet = new Set();
 
     $.post("/checkRoomId", {}, function (RoomId) {
         $("#roomNumber").text("Room Number: " + RoomId);
@@ -16,7 +17,7 @@ $(document).ready(function () {
     $.post("/getPlayerId", {}, function (playerId) {
         sessionId = playerId;
         $.post("/getGame", {}, function (data) {
-            console.log(data);
+            // console.log(data);
             boardPositions = data.boardPositions;
             isStart = data.isStart;
             step = data.step;
@@ -123,9 +124,9 @@ $(document).ready(function () {
         scoreBoard.html("");
         for (var i = 0; i < players.length; i++) {
             if (players[i] === sessionId) {
-                scoreBoard.append("<div class='mine'>Player " + (i + 1) + " : " + scores[0] + "</div>")
+                scoreBoard.append("<div class='mine'>Player " + (i + 1) + " : " + scores[i] + "</div>")
             } else {
-                scoreBoard.append("<div>Player " + (i + 1) + ": " + scores[0] + "</div>")
+                scoreBoard.append("<div>Player " + (i + 1) + ": " + scores[i] + "</div>")
             }
         }
         $("#timer").text("Time Remaining: " + (60 - Math.round(timeAfterStart / 1000)));
@@ -135,7 +136,7 @@ $(document).ready(function () {
             $("#startInfo").text("Game auto start in " + (60 - Math.round(timeAfterCreate / 1000)) + "s");
             $("#startInfo").show();
         }
-        // renderPaints();
+        renderPaints();
     }
 
     $("#start").click(function () {
@@ -151,8 +152,56 @@ $(document).ready(function () {
     function enableShoot() {
         $("#aim").show();
         $(document).keydown(function (e) {
+            switch (e.keyCode) {
+                case 37:
+                case 100:
+                    keyDownSet.add(37);
+                    moveAim();
+                    break;
+                case 38:
+                case 104:
+                    keyDownSet.add(38);
+                    moveAim();
+                    break;
+                case 39:
+                case 102:
+                    keyDownSet.add(39);
+                    moveAim();
+                    break;
+                case 40:
+                case 98:
+                    keyDownSet.add(40);
+                    moveAim();
+                    break;
+                case 32:
+                    shoot();
+            }
+        });
+        $(document).keyup(function (e) {
+            switch (e.keyCode) {
+                case 37:
+                case 100:
+                    keyDownSet.delete(37);
+                    break;
+                case 38:
+                case 104:
+                    keyDownSet.delete(38);
+                    break;
+                case 39:
+                case 102:
+                    keyDownSet.delete(39);
+                    break;
+                case 40:
+                case 98:
+                    keyDownSet.delete(40);
+            }
+        });
+    }
+
+    function moveAim() {
+        keyDownSet.forEach(function (key) {
             var aim = $("#aim");
-            switch (e.which) {
+            switch (key) {
                 case 37:
                     aim.css({left: parseFloat(aim.css("left")) - 8});
                     break;
@@ -164,38 +213,52 @@ $(document).ready(function () {
                     break;
                 case 40:
                     aim.css({top: parseFloat(aim.css("top")) + 8});
-                    break;
             }
-        });
+        })
+    }
+
+    function shoot() {
+        var board = $("#board");
+        var aim = $("#aim");
+        var aimTop = aim.offset().top + (aim.height() / 2);
+        var aimLeft = aim.offset().left + (aim.width() / 2);
+        var boardTop = board.offset().top;
+        var boardLeft = board.offset().left;
+        var boardBottomRightPointTop = boardTop + board.height();
+        var boardBottomRightPointLeft = boardLeft + board.width();
+        if (aimTop > boardTop && aimTop < boardBottomRightPointTop && aimLeft > boardLeft && aimLeft < boardBottomRightPointLeft) {
+            var positionTop = (aimTop - boardTop) * 100 / (boardBottomRightPointTop - boardTop);
+            var positionLeft = (aimLeft - boardLeft) * 100 / (boardBottomRightPointLeft - boardLeft);
+            $.post("/shoot", {top: positionTop, left: positionLeft}, function (result) {
+                if (!result) {
+                    aim.animate({opacity: 0}, 100, function () {
+                        aim.animate({opacity: 1}, 100, function () {
+                            aim.animate({opacity: 0}, 100, function () {
+                                aim.animate({opacity: 1}, 100);
+                            });
+                        });
+                    });
+                }
+            })
+        }
     }
 
     function renderPaints() {
-        console.log(paints);
-        for(var i=0; i<= paints.length; i++){
-            var sessionArray = {};
-            var item = paints[i].player;
-            item = item.toString();
-            if (sessionArray.indexOf(item) != -1){
-                sessionArray.append(i);
+        $("#board").html("");
+        for (var i = 0; i < paints.length; i++) {
+            // console.log(paints[i]);
+            if (paints[i].player === players[0]) {
+                $("#board").append("<img class='paint' style='top:" + paints[i].position[0] + "%;left: " + paints[i].position[1] + "%' src='Img/paint1.png'>");
+            } else if (paints[i].player === players[1]) {
+                $("#board").append("<img class='paint' style='top:" + paints[i].position[0] + "%;left: " + paints[i].position[1] + "%' src='Img/paint2.png'>");
+            } else if (paints[i].player === players[2]) {
+                $("#board").append("<img class='paint' style='top:" + paints[i].position[0] + "%;left: " + paints[i].position[1] + "%' src='Img/paint3.png'>");
+            } else if (paints[i].player === players[3]) {
+                $("#board").append("<img class='paint' style='top:" + paints[i].position[0] + "%;left: " + paints[i].position[1] + "%' src='Img/paint4.png'>");
             }
         }
-        for(var i = 0; i<=sessionArray.length; i++){
-            var x =  paints[i].position[0]; // x
-            var y = paints[i].position[1]; // y
-            var img = "Img/paint";
-            img = img.toString().append(i+1);
-            // $("#board").append("<img class='paint' style="top = "+ x+" %;left: y%' src= img>") // Img/paint1.png , paint2
-            $("#board").append("< img class='paint' style='top:"+ x +"%;left: "+ y +"%' src="+ img+ ".png>")
-        }
-
-        //$("#board").append("<img class='paint' style='top:32%;left: 23%' src='Img/paint2.png'>")
-
-
     }
 
-    $("#test").click(function () {
-        renderPaints();
-    });
 });
 
 

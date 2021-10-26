@@ -36,10 +36,6 @@ public class Game {
             boardPositions.add(new double[]{random.nextInt(51), random.nextInt(51)});
             timeUse += calculateDistance(boardPositions.get(boardPositions.size() - 1), boardPositions.get(boardPositions.size() - 2)) / step;
         }
-
-        paints.add(new Paint("sessionId111",new double[]{23,45}));
-        paints.add(new Paint("sessionId111",new double[]{13,75}));
-        paints.add(new Paint("sessionId222",new double[]{12,34}));
     }
 
     private double calculateDistance(double[] point1, double[] point2) {

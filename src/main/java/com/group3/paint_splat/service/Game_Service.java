@@ -112,6 +112,14 @@ public class Game_Service implements Game_Service_Interface {
             while (iterator.hasNext()) {
                 int index = iterator.next().indexOf(playerId);
                 if (index != -1) {
+                    game.getPaints().removeIf(next -> next.getPlayer().equals(playerId));
+//                    Iterator<Paint> paintsItertator = game.getPaints().iterator();
+//                    while (paintsItertator.hasNext()) {
+//                        Paint next = paintsItertator.next();
+//                        if (next.getPlayer().equals(playerId)) {
+//                            paintsItertator.remove();
+//                        }
+//                    }
                     game.getScores().remove(index);
                     iterator.remove();
                     break;

@@ -13,9 +13,6 @@ $(document).ready(function () {
             $("#refresh").click(function () {
                 refresh();
             });
-            $("#test").click(function () {
-                $.post("/printConnections", {})
-            });
         }
     });
 });
