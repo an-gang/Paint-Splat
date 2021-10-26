@@ -135,6 +135,7 @@ $(document).ready(function () {
             $("#startInfo").text("Game auto start in " + (60 - Math.round(timeAfterCreate / 1000)) + "s");
             $("#startInfo").show();
         }
+        // renderPaints();
     }
 
     $("#start").click(function () {
@@ -170,6 +171,9 @@ $(document).ready(function () {
 
     function renderPaints() {
         console.log(paints);
+
+        $("#board").append("<img class='paint' style='top:32%;left: 23%' src='Img/paint2.png'>")
+
 
     }
 

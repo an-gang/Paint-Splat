@@ -153,7 +153,7 @@ public class Game_Service implements Game_Service_Interface {
     @Override
     public boolean shoot(String playerId, double[] position) {
         Game game = rooms.get(checkRoomId(playerId));
-        return game.shoot(playerId,position);
+        return game.shoot(playerId, position);
     }
 
     @Override

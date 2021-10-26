@@ -42,17 +42,22 @@ public class Game {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
-    public boolean shoot(String playerId, double[] doubles) {
+    public boolean shoot(String playerId, double[] position) {
         Iterator<Paint> iterator = paints.iterator();
         boolean isOverlapped = false;
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Paint next = iterator.next();
-
-
+            if (calculateDistance(next.getPosition(), position) < 12) {
+                isOverlapped = true;
+            }
         }
-
-
-        return true;
+        if (isOverlapped) {
+            return false;
+        } else {
+            paints.add(new Paint(playerId, position));
+            scores.set(players.indexOf(playerId), scores.get(players.indexOf(playerId)) + 1);
+            return true;
+        }
     }
 
 

@@ -29,8 +29,8 @@ body {
 .paint {
     width: 12%;
     position: absolute;
-    left: 34%;
-    top: 34%;
+    /*left: 34%;*/
+    /*top: 34%;*/
     transform: translate(-50%, -50%);
 }
 
