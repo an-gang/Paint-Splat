@@ -231,17 +231,24 @@ $(document).ready(function () {
             var positionLeft = (aimLeft - boardLeft) * 100 / (boardBottomRightPointLeft - boardLeft);
             $.post("/shoot", {top: positionTop, left: positionLeft}, function (result) {
                 if (!result) {
-                    aim.animate({opacity: 0}, 100, function () {
-                        aim.animate({opacity: 1}, 100, function () {
-                            aim.animate({opacity: 0}, 100, function () {
-                                aim.animate({opacity: 1}, 100);
-                            });
-                        });
-                    });
+                    playShootFailedAnimation();
                 }
             })
+        } else {
+            playShootFailedAnimation();
         }
     }
+
+    function playShootFailedAnimation() {
+        aim.animate({opacity: 0}, 100, function () {
+            aim.animate({opacity: 1}, 100, function () {
+                aim.animate({opacity: 0}, 100, function () {
+                    aim.animate({opacity: 1}, 100);
+                });
+            });
+        });
+    }
+
 
     function renderPaints() {
         $("#board").html("");
