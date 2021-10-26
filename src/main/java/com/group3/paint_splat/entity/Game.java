@@ -1,11 +1,14 @@
 package com.group3.paint_splat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.*;
 
+@JsonIgnoreProperties({"createTime", "startTime", "roomTimer", "gameTimer"})
 public class Game {
     private Date createTime;
-    private long timeAfterCreate;
     private Date startTime;
+    private long timeAfterCreate;
     private long timeAfterStart;
     private double step;
     private ArrayList<String> players;
@@ -62,104 +65,81 @@ public class Game {
         }
     }
 
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public long getTimeAfterCreate() {
-        return timeAfterCreate;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public void setTimeAfterCreate(long timeAfterCreate) {
         this.timeAfterCreate = timeAfterCreate;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public long getTimeAfterStart() {
-        return timeAfterStart;
-    }
-
     public void setTimeAfterStart(long timeAfterStart) {
         this.timeAfterStart = timeAfterStart;
-    }
-
-    public double getStep() {
-        return step;
     }
 
     public void setStep(double step) {
         this.step = step;
     }
 
-    public ArrayList<String> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(ArrayList<String> players) {
-        this.players = players;
-    }
-
-    public ArrayList<Integer> getScores() {
-        return scores;
-    }
-
-    public void setScores(ArrayList<Integer> scores) {
-        this.scores = scores;
-    }
-
-    public ArrayList<Paint> getPaints() {
-        return paints;
-    }
-
-    public void setPaints(ArrayList<Paint> paints) {
-        this.paints = paints;
-    }
-
-    public ArrayList<double[]> getBoardPositions() {
-        return boardPositions;
-    }
-
-    public void setBoardPositions(ArrayList<double[]> boardPositions) {
-        this.boardPositions = boardPositions;
-    }
-
-    public boolean isStart() {
-        return isStart;
-    }
-
     public void setStart(boolean start) {
         isStart = start;
-    }
-
-    public Timer getRoomTimer() {
-        return roomTimer;
     }
 
     public void setRoomTimer(Timer roomTimer) {
         this.roomTimer = roomTimer;
     }
 
-    public Timer getGameTimer() {
-        return gameTimer;
-    }
-
     public void setGameTimer(Timer gameTimer) {
         this.gameTimer = gameTimer;
     }
 
-    public static long getTimeSpan() {
-        return timeSpan;
+
+    public Date getCreateTime() {
+        return createTime;
     }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public long getTimeAfterCreate() {
+        return timeAfterCreate;
+    }
+
+    public long getTimeAfterStart() {
+        return timeAfterStart;
+    }
+
+    public double getStep() {
+        return step;
+    }
+
+    public ArrayList<String> getPlayers() {
+        return players;
+    }
+
+    public ArrayList<Integer> getScores() {
+        return scores;
+    }
+
+    public ArrayList<Paint> getPaints() {
+        return paints;
+    }
+
+    public ArrayList<double[]> getBoardPositions() {
+        return boardPositions;
+    }
+
+    public boolean isStart() {
+        return isStart;
+    }
+
+    public Timer getRoomTimer() {
+        return roomTimer;
+    }
+
+    public Timer getGameTimer() {
+        return gameTimer;
+    }
+
 }

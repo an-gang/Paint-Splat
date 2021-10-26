@@ -126,8 +126,12 @@ public class Game_Service implements Game_Service_Interface {
                 }
             }
             if (game.getPlayers().size() == 0) {
-                game.getRoomTimer().cancel();
-                game.getGameTimer().cancel();
+                if (game.getRoomTimer() != null) {
+                    game.getRoomTimer().cancel();
+                }
+                if (game.getGameTimer() != null) {
+                    game.getGameTimer().cancel();
+                }
                 rooms.remove(roomId);
             }
         }
