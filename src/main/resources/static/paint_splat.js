@@ -11,6 +11,14 @@ $(document).ready(function () {
     var paints;
     var keyDownSet = new Set();
 
+    if (!/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+        $("#up").hide();
+        $("#down").hide();
+        $("#left").hide();
+        $("#right").hide();
+        $("#shoot").hide();
+    }
+
     $.post("/checkRoomId", {}, function (RoomId) {
         $("#roomNumber").text("Room Number: " + RoomId);
     });
@@ -124,9 +132,9 @@ $(document).ready(function () {
         scoreBoard.html("");
         for (var i = 0; i < players.length; i++) {
             if (players[i] === sessionId) {
-                scoreBoard.append("<div class='mine'>Player " + (i + 1) + " : " + scores[i] + "</div>")
+                scoreBoard.append("<div class='mine'>Player " + (i + 1) + " : " + scores[i] + "</div>");
             } else {
-                scoreBoard.append("<div>Player " + (i + 1) + ": " + scores[i] + "</div>")
+                scoreBoard.append("<div class='others'>Player " + (i + 1) + ": " + scores[i] + "</div>");
             }
         }
         $("#timer").text("Time Remaining: " + (60 - Math.round(timeAfterStart / 1000)));
@@ -196,6 +204,110 @@ $(document).ready(function () {
                     keyDownSet.delete(40);
             }
         });
+
+        var moveSpeed = 50;
+        var upTimerTask;
+        $("#up").on("touchstart", function () {
+            keyDownSet.add(38);
+            upTimerTask = setInterval(moveAim, moveSpeed);
+        });
+
+        $("#up").on("touchend", function () {
+            window.clearInterval(upTimerTask);
+            keyDownSet.delete(38);
+        });
+
+        $("#up").on("touchcancel", function () {
+            window.clearInterval(upTimerTask);
+            keyDownSet.delete(38);
+        });
+        var downTimerTask;
+        $("#down").on("touchstart", function () {
+            keyDownSet.add(40);
+            downTimerTask = setInterval(moveAim, moveSpeed);
+        });
+
+        $("#down").on("touchend", function () {
+            window.clearInterval(downTimerTask);
+            keyDownSet.delete(40);
+        });
+
+        $("#down").on("touchcancel", function () {
+            window.clearInterval(downTimerTask);
+            keyDownSet.delete(40);
+        });
+        var leftTimerTask;
+        $("#left").on("touchstart", function () {
+            keyDownSet.add(37);
+            leftTimerTask = setInterval(moveAim, moveSpeed);
+        });
+
+        $("#left").on("touchend", function () {
+            window.clearInterval(leftTimerTask);
+            keyDownSet.delete(37);
+        });
+
+        $("#left").on("touchcancel", function () {
+            window.clearInterval(leftTimerTask);
+            keyDownSet.delete(37);
+        });
+        var rightTimerTask;
+        $("#right").on("touchstart", function () {
+            keyDownSet.add(39);
+            rightTimerTask = setInterval(moveAim, moveSpeed);
+        });
+
+        $("#right").on("touchend", function () {
+            window.clearInterval(rightTimerTask);
+            keyDownSet.delete(39);
+        });
+
+        $("#right").on("touchcancel", function () {
+            window.clearInterval(rightTimerTask);
+            keyDownSet.delete(39);
+        });
+
+        // var upTimerTask;
+        // $("#up").mousedown(function () {
+        //     keyDownSet.add(38);
+        //     upTimerTask = setInterval(moveAim, moveSpeed);
+        // });
+        // $("#up").mouseup(function () {
+        //     window.clearInterval(upTimerTask);
+        //     keyDownSet.delete(38);
+        // });
+        // var downTimerTask;
+        // $("#down").mousedown(function () {
+        //     keyDownSet.add(40);
+        //     downTimerTask = setInterval(moveAim, moveSpeed);
+        // });
+        // $("#down").mouseup(function () {
+        //     window.clearInterval(downTimerTask);
+        //     keyDownSet.delete(40);
+        // });
+        // var leftTimerTask;
+        // $("#left").mousedown(function () {
+        //     keyDownSet.add(37);
+        //     leftTimerTask = setInterval(moveAim, moveSpeed);
+        // });
+        // $("#left").mouseup(function () {
+        //     window.clearInterval(leftTimerTask);
+        //     keyDownSet.delete(37);
+        // });
+        // var rightTimerTask;
+        // $("#right").mousedown(function () {
+        //     keyDownSet.add(39);
+        //     rightTimerTask = setInterval(moveAim, moveSpeed);
+        // });
+        // $("#right").mouseup(function () {
+        //     window.clearInterval(rightTimerTask);
+        //     keyDownSet.delete(39);
+        // });
+        $("#shoot").click(function () {
+            shoot();
+        });
+
+
     }
 
     function moveAim() {
@@ -266,6 +378,7 @@ $(document).ready(function () {
             }
         }
     }
+
 
 });
 

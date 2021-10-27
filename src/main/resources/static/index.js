@@ -1,3 +1,10 @@
+// $.post({
+//     url: "http://localhost:8080/getPlayerId",
+//     xhrFields: {withCredentials: true}
+// }, {}, function (id) {
+//     console.log(id)
+// });
+
 $(document).ready(function () {
     $.post("/checkRoomId", {}, function (data) {
         if (data) {
@@ -21,7 +28,7 @@ function refresh() {
     $.post("/getRooms", {}, function (data) {
         $("#roomList").html("");
         for (var i = 0; i < data.length; i++) {
-            $("#roomList").append("<div id='" + data[i] + "' onclick='joinRoom(\"" + data[i] + "\")'>" + data[i] + "</div>")
+            $("#roomList").append("<div id='" + data[i] + "' class='button green' onclick='joinRoom(\"" + data[i] + "\")'>" + data[i] + "</div>");
 
         }
     })
