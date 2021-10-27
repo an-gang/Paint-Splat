@@ -113,6 +113,7 @@ $(document).ready(function () {
             if (timeAfterStart >= 60000) {
                 window.clearInterval(gameUpdater);
                 $("#gameOver").append($("#scoreBoard"));
+                $("#gameOver").append("<br/><br/>");
                 $("#gameOver").append($("#quit"));
                 $("#cover").show();
                 setTimeout(function () {
