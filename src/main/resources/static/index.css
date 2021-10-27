@@ -15,8 +15,8 @@ body {
     margin: 0 auto;
 }
 #roomList{
-    width: 60%;
-    height: 12%;
+    width: 76%;
+    height: 17%;
     background-image: url("Img/board.png");
     background-size:100% 100%;
     margin: 0 auto;
@@ -37,10 +37,9 @@ body {
 .logo {
     margin: 1%;
     width: 80%;
-    hight: 45%;
 }
 .group {
     margin: 1%;
     width: 80%;
-    hight: 15%;
+    height: 12%;
 }
