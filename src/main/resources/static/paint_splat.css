@@ -13,7 +13,7 @@ body {
     /*height: 50vh;*/
     width: 130vmin;
     height: 80vmin;
-    background-image: url("img/panel.png");
+    background-image: url("Img/panel.png");
     background-size:100% 100%;
     margin: auto;
 }
@@ -21,7 +21,7 @@ body {
 #board {
     width: 50%;
     height: 50%;
-    background-image: url("img/board.png");
+    background-image: url("Img/board.png");
     background-size:100% 100%;
     position: relative;
     left: 0;
@@ -122,7 +122,7 @@ body {
 }
 
 #gameOver {
-    background-image: url("img/board.png");
+    background-image: url("Img/board.png");
     background-size:100% 100%;
     position: absolute;
     color: white;
