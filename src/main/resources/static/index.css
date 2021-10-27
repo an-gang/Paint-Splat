@@ -16,14 +16,18 @@ body {
 }
 #roomList{
     width: 60%;
-    background-color: aquamarine;
+    background-image: url("img/board.png");
+    background-size:100% 100%;
     margin: 0 auto;
+}
+
+.button{
+    width: 60%;
 }
 
 #createRoom, #refresh{
     font-size: 150%;
-    width: 30%;
-    hight: 25%;
+    width: 35%;
     margin: 3%;
     bottom: 20%;
 }
