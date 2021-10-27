@@ -4,25 +4,32 @@
     <meta charset="UTF-8">
     <title>Paint Splat</title>
     <link rel="stylesheet" href="paint_splat.css">
+    <link rel="stylesheet" href="button.css">
     <script src="Lib/jquery-3.6.0.min.js"></script>
     <script src="paint_splat.js"></script>
 </head>
 <body>
 
-<div id="panel">
-    <div id="board"></div>
-    <img id="aim" src="Img/aim.png">
+<div id="main">
+    <div id="panel">
+        <div id="board"></div>
+        <img id="aim" src="Img/aim.png">
+    </div>
+    <div id="roomNumber"></div>
+    <div id="timer"></div>
+    <div id="scoreBoard"></div>
 </div>
-<div id="roomNumber"></div>
-<div id="timer"></div>
-<div id="scoreBoard"></div>
-<button id="up" class="blue">↑</button>
-<button id="down" class="blue">↓</button>
-<button id="right" class="blue">→</button>
-<button id="left" class="blue">←</button>
-<button id="shoot" class="blue">shoot</button>
-<button id="start">Start</button>
-<button id="quit">Quit</button>
+<div id="direction">
+    <button id="up" class="button green">↑</button><br/>
+    <button id="left" class="button green">←</button>
+    <button id="down" class="button green">↓</button>
+    <button id="right" class="button green">→</button>
+</div>
+<div id="function">
+    <button id="start" class="button red">Start</button><br/>
+    <button id="quit" class="button purple">Quit</button>
+    <button id="shoot" class="button blue">shoot</button>
+</div>
 <div id="startInfo"></div>
 <img id="num1" class="countDown" src="Img/1.png">
 <img id="num2" class="countDown" src="Img/2.png">

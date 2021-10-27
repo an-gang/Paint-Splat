@@ -13,14 +13,16 @@ body {
     /*height: 50vh;*/
     width: 130vmin;
     height: 80vmin;
-    background-color: aqua;
+    background-image: url("img/panel.png");
+    background-size:100% 100%;
     margin: auto;
 }
 
 #board {
     width: 50%;
     height: 50%;
-    background-color: azure;
+    background-image: url("img/board.png");
+    background-size:100% 100%;
     position: relative;
     left: 0;
     top: 0;
@@ -35,22 +37,58 @@ body {
 }
 
 #roomNumber {
-    background-color: antiquewhite;
     display: inline-block;
+    font-size: 20px;
+    color: white;
+    border:1px solid #a5b6c8;
+    background: #00adee;
+    margin: 0.2% 0.2% 0.2% 0.2%;
 }
 
 #timer {
-    background-color: yellowgreen;
     display: inline-block;
+    font-size: 20px;
+    color: white;
+    border:1px solid #a5b6c8;
+    background: #00adee;
 }
 
 #scoreBoard {
     background-color: orange;
+    display: inline-block;
 }
 
 .mine {
-    background-color: yellowgreen;
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    border:1px solid #a5b6c8;
+    background: yellowgreen;
 }
+
+.others{
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    border:1px solid #a5b6c8;
+    background: chocolate;
+}
+
+#timer {
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    border:1px solid #a5b6c8;
+    background: #00adee;
+}
+
+#startInfo {
+     display: inline-block;
+     font-size: 20px;
+     color: white;
+     border:1px solid #a5b6c8;
+     background: coral;
+ }
 
 #start {
     display: none;
@@ -88,10 +126,20 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
+    width: 20%;
+    height: 20%;
     transform: translate(-50%, -50%);
 }
 
 #gameOver p {
     font: 3vh bold;
     line-height: 0.1vh;
+}
+
+#direction {
+    float: left;
+}
+
+#function {
+    float: right;
 }
