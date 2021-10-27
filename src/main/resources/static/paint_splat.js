@@ -11,7 +11,7 @@ $(document).ready(function () {
     var paints;
     var keyDownSet = new Set();
 
-    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    if (!/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
         $("#up").hide();
         $("#down").hide();
         $("#left").hide();
