@@ -14,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
+//@CrossOrigin(origins = "http://localhost:63343", allowCredentials = "true")
 @CrossOrigin("*")
 @RestController
 public class Game_Controller {

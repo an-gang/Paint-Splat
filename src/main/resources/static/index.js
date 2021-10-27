@@ -1,3 +1,10 @@
+// $.post({
+//     url: "http://localhost:8080/getPlayerId",
+//     xhrFields: {withCredentials: true}
+// }, {}, function (id) {
+//     console.log(id)
+// });
+
 $(document).ready(function () {
     $.post("/checkRoomId", {}, function (data) {
         if (data) {
