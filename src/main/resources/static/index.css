@@ -16,9 +16,11 @@ body {
 }
 #roomList{
     width: 60%;
+    height: 12%;
     background-image: url("Img/board.png");
     background-size:100% 100%;
     margin: 0 auto;
+    overflow: auto;
 }
 
 .button{
