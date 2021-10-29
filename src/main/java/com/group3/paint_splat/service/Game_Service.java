@@ -11,13 +11,13 @@ import java.util.*;
 public class Game_Service implements Game_Service_Interface {
     private static HashMap<String, Game> rooms = new HashMap<>();
 
-    //返回房间号列表
+    // return roomID list
     @Override
     public Set<String> getRooms() {
         return rooms.keySet();
     }
 
-    //创建房间，即新建game对象和id。并且，启动附加的roomTimer作为开始计时器，创建房间60秒后强制开始避免内存垃圾
+    // Create Room: create a new game object and id. and, start the additional roomTimer as a start timer to force the room to start 60 seconds after creation to avoid memory garbage
     @Override
     public String createRoom(String playerId) {
         String existedRoomId = checkRoomId(playerId);
@@ -63,7 +63,7 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    //把playerId放进要加入的房间，已在房间中则返回房间号，房间已满则返回"full"
+    //Put the playerID into the room the player wants to join, and return the room number if the room is already in, or return "full" if the room is full
     @Override
     public String joinRoom(String playerId, String roomId) {
         String existedRoomId = checkRoomId(playerId);
@@ -81,7 +81,7 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    //通过playerId查找玩家在哪个房间里，返回房间号（即RoomId）
+    //Find which room the player is in by playerId and return the room number (RoomId)
     @Override
     public String checkRoomId(String playerId) {
         String roomId = null;
@@ -98,19 +98,19 @@ public class Game_Service implements Game_Service_Interface {
         return roomId;
     }
 
-    //返回游戏房间的所有后台书记，供前台用轮询的方式实现状态同步
+    //Return all the backend clerks of the game room for the frontend to synchronize the status by interval
     @Override
     public Game getGame(String playerId) {
         return rooms.get(checkRoomId(playerId));
     }
 
-    //返回游戏开始后的毫秒数
+    //Returns the number of milliseconds since the start of the game
     @Override
     public long getTimeAfterStart(String playerId) {
         return rooms.get(checkRoomId(playerId)).getTimeAfterStart();
     }
 
-    //当用户主动退出游戏时执行，移除玩家并清理内存
+    //Executes when the user actively quits the game, removes the player and clears memory
     @Override
     public void quitRoom(String playerId) {
         String roomId = checkRoomId(playerId);
@@ -142,7 +142,7 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    //设置游戏状态为开始，并启用gameTimer用于实现游戏开始后的计时及变速以及游戏结束后的内存清理
+    //Set the game state to start, and enable gameTimer for timing and speed change after the game starts and memory cleanup after the game ends
     @Override
     public void startGame(String playerId) {
         String roomId = checkRoomId(playerId);
@@ -171,14 +171,14 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    //调用Game实体类的shoot方法判断并返回是否射击成功
+    //Call the shoot method of the Game entity class to determine and return whether the shot was successful or not
     @Override
     public boolean shoot(String playerId, double[] position) {
         Game game = rooms.get(checkRoomId(playerId));
         return game.shoot(playerId, position);
     }
 
-    //仅用于测试，可删。当被调用的时候会打印所有connections between roomId and game object
+    //Used for testing only, can be deleted. When called it prints all connections between roomId and game object
     @Override
     public void printConnections() {
         Iterator<Map.Entry<String, Game>> iterator = rooms.entrySet().iterator();
@@ -190,7 +190,7 @@ public class Game_Service implements Game_Service_Interface {
         }
     }
 
-    //工具方法，生成6位房间号
+    //tool methods, generate 6 bits roomID
     private static String generateID() {
         Random random = new Random();
         String id = Integer.toString(random.nextInt(1000000));

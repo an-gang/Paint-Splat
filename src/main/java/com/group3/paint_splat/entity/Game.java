@@ -16,12 +16,14 @@ public class Game {
     private ArrayList<Paint> paints;
     private ArrayList<double[]> boardPositions;
     private boolean isStart;
-    //如果房间对象被销毁，两个timer也会被自动销毁，避免内存垃圾。相应逻辑写在service层quitRoom()方法里
-    private Timer roomTimer;//用于实现游戏自动强制开始。生命周期：房间创建后启用，游戏开始后清除
-    private Timer gameTimer;//用于实现游戏开始后的计时及变速以及游戏结束后的内存清理。生命周期：游戏开始后启用，游戏结束后清除
+
+    // Timer：If the room object is destroyed, the two timers will also be automatically destroyed to avoid memory garbage.
+    //        The corresponding logic is written in the service layer quitRoom() method
+    private Timer roomTimer;//Used to implement automatic forced start of the game. Life cycle: enabled after room creation, cleared after game start
+    private Timer gameTimer;//Used to implement timing and speed change after game start and memory cleanup after game end. Life cycle: enabled after game start, cleared after game end
     private final static long timeSpan = 60000;
 
-    //构造方法给属性设置初值并调用init()方法
+    //Construct method, set the initial value for the property and call the init() method
     public Game() {
         createTime = new Date();
         timeAfterCreate = 0;
@@ -34,7 +36,7 @@ public class Game {
         isStart = false;
         init();
     }
-    //生成整局游戏的随机点存进boardPositions
+    // Generate random points for the whole game and store them in boardPositions
     private void init() {
         boardPositions.add(new double[]{0, 0});
         Random random = new Random();
@@ -45,12 +47,12 @@ public class Game {
         }
     }
 
-    //工具方法，用于计算两点之间的值
+    // tool method, calculate distance of two points
     private double calculateDistance(double[] point1, double[] point2) {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
-    //当有玩家射击时，逻辑层会调用此方法遍历已有的油漆位置以判断是否射击成功
+    // When a player shoots, the logic layer calls this method to iterate through the existing paint positions to determine if the shot was successful
     public boolean shoot(String playerId, double[] position) {
         Iterator<Paint> iterator = paints.iterator();
         boolean isOverlapped = false;
@@ -68,7 +70,6 @@ public class Game {
             return true;
         }
     }
-
 
 
 
