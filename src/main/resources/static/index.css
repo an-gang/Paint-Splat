@@ -14,23 +14,25 @@ body {
     background-color: Black;
     margin: 0 auto;
 }
-#roomList{
+
+#roomList {
     width: 76%;
-    height: 17%;
+    height: 20%;
     background-image: url("Img/board.png");
-    background-size:100% 100%;
+    background-size: 100% 100%;
     margin: 0 auto;
     overflow: auto;
 }
-#roomList div:before{
-    content:"Room No."
+
+#roomList div:before {
+    content: "Room No."
 }
 
-.button{
+.button {
     width: 60%;
 }
 
-#createRoom, #refresh{
+#createRoom, #refresh {
     font-size: 150%;
     width: 35%;
     margin: 3%;
@@ -38,11 +40,10 @@ body {
 }
 
 .logo {
-    margin: 1%;
-    width: 80%;
+    width: 65%;
 }
+
 .group {
-    margin: 1%;
     width: 80%;
     height: 12%;
 }
