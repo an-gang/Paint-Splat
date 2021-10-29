@@ -16,10 +16,12 @@ public class Game {
     private ArrayList<Paint> paints;
     private ArrayList<double[]> boardPositions;
     private boolean isStart;
-    private Timer roomTimer;
-    private Timer gameTimer;
+    //如果房间对象被销毁，两个timer也会被自动销毁，避免内存垃圾。相应逻辑写在service层quitRoom()方法里
+    private Timer roomTimer;//用于实现游戏自动强制开始。生命周期：房间创建后启用，游戏开始后清除
+    private Timer gameTimer;//用于实现游戏开始后的计时及变速以及游戏结束后的内存清理。生命周期：游戏开始后启用，游戏结束后清除
     private final static long timeSpan = 60000;
 
+    //构造方法给属性设置初值并调用init()方法
     public Game() {
         createTime = new Date();
         timeAfterCreate = 0;
@@ -32,7 +34,7 @@ public class Game {
         isStart = false;
         init();
     }
-
+    //生成整局游戏的随机点存进boardPositions
     private void init() {
         boardPositions.add(new double[]{0, 0});
         Random random = new Random();
@@ -43,10 +45,12 @@ public class Game {
         }
     }
 
+    //工具方法，用于计算两点之间的值
     private double calculateDistance(double[] point1, double[] point2) {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
+    //当有玩家射击时，逻辑层会调用此方法遍历已有的油漆位置以判断是否射击成功
     public boolean shoot(String playerId, double[] position) {
         Iterator<Paint> iterator = paints.iterator();
         boolean isOverlapped = false;
@@ -64,6 +68,9 @@ public class Game {
             return true;
         }
     }
+
+
+
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;

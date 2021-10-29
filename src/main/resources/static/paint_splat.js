@@ -11,6 +11,7 @@ $(document).ready(function () {
     var paints;
     var keyDownSet = new Set();
 
+    //正则表达式读取访问端是移动设备还是电脑，切换对应的显示方式
     if (!/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
         $("#up").hide();
         $("#down").hide();
@@ -20,9 +21,12 @@ $(document).ready(function () {
         $("#function_phone").attr("id", "function_web")
     }
 
+    //从后台查询并显示房间号
     $.post("/checkRoomId", {}, function (RoomId) {
         $("#roomNumber").text("Room Number: " + RoomId);
     });
+
+    //初始化游戏，从后台查询初始化需要的数据，得到数据后在进行初始化（同步）
     $.post("/getPlayerId", {}, function (playerId) {
         sessionId = playerId;
         $.post("/getGame", {}, function (data) {
@@ -68,6 +72,7 @@ $(document).ready(function () {
         });
     });
 
+    //播放开始动画
     function playStartAnimation() {
         $("#num3").animate({opacity: 1}, 500, function () {
             $("#num3").animate({opacity: 0}, 500, function () {
@@ -82,6 +87,7 @@ $(document).ready(function () {
         });
     }
 
+    //按照boardPositions里的随机点信息移动黑板，递归调用自己，知道遍历整个boardPositions
     function moveBoard() {
         console.log(boardPositions.length + "----" + (currentPosition + 1) + "----" + timeAfterStart / 1000 + "----" + step);
         var current = boardPositions[currentPosition];
@@ -95,12 +101,15 @@ $(document).ready(function () {
         }
     }
 
+    //工具方法，用于计算两家之间距离
     function calculateDistance(point1, point2) {
         return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 
+    //启动interval用轮询的方式实现状态同步（从后台服务器同步数据）
     var gameUpdater = setInterval(updateGame, 50);
 
+    //请求后台并用的得到的最新数据同步更新客户端本地数据
     function updateGame() {
         $.post("/getGame", {}, function (data) {
             isStart = data.start;
@@ -124,12 +133,14 @@ $(document).ready(function () {
         });
     }
 
+    //渲染客户端页面
     function renderBoard(playersId) {
         if (playersId === sessionId && !isStart) {
             $("#start").show();
         } else {
             $("#start").hide();
         }
+
         var scoreBoard = $("#scoreBoard");
         scoreBoard.html("");
         for (var i = 0; i < players.length; i++) {
@@ -139,7 +150,9 @@ $(document).ready(function () {
                 scoreBoard.append("<div class='others'>Player " + (i + 1) + ": " + scores[i] + "</div>");
             }
         }
+
         $("#timer").text("Time Remaining: " + (60 - Math.round(timeAfterStart / 1000)));
+
         if (isStart) {
             $("#startInfo").hide();
         } else {
@@ -149,16 +162,18 @@ $(document).ready(function () {
         renderPaints();
     }
 
+    //开始按钮功能
     $("#start").click(function () {
         $.post("/startGame", {})
     });
 
+    //退出按钮功能
     $("#quit").click(function () {
         $.post("/quitRoom", {});
         window.location.href = "index.html";
     });
 
-
+    //显示准星并绑定相关键盘事件
     function enableShoot() {
         $("#aim").show();
         $(document).keydown(function (e) {
@@ -312,6 +327,7 @@ $(document).ready(function () {
 
     }
 
+    //具体的移动准星方法，这种方式允许用户进行多点（多键位）操作
     function moveAim() {
         keyDownSet.forEach(function (key) {
             var aim = $("#aim");
@@ -331,6 +347,7 @@ $(document).ready(function () {
         })
     }
 
+    //计算当前准星相对于板的坐标百分比并上传后台，后台判断并返回是否成功，如不成功则播放射击失败动画
     function shoot() {
         var board = $("#board");
         var aim = $("#aim");
@@ -353,6 +370,7 @@ $(document).ready(function () {
         }
     }
 
+    //播放射击失败动画
     function playShootFailedAnimation() {
         var aim = $("#aim");
         aim.animate({opacity: 0}, 100, function () {
@@ -364,7 +382,7 @@ $(document).ready(function () {
         });
     }
 
-
+    //渲染油漆到板上，每次renderBoard()执行的时候都会调用renderPaints()
     function renderPaints() {
         $("#board").html("");
         for (var i = 0; i < paints.length; i++) {
@@ -380,7 +398,6 @@ $(document).ready(function () {
             }
         }
     }
-
 
 });
 
