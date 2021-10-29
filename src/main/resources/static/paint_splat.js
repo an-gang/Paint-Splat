@@ -17,6 +17,7 @@ $(document).ready(function () {
         $("#left").hide();
         $("#right").hide();
         $("#shoot").hide();
+        $("#function_phone").attr("id", "function_web")
     }
 
     $.post("/checkRoomId", {}, function (RoomId) {
