@@ -41,7 +41,7 @@ function joinRoom(roomId) {
         if (data === "success") {
             window.location.href = "paint_splat.html";
         } else if (data === "full") {
-            alert("房间已满");
+            alert("full room");
         }
     })
 
